@@ -9,7 +9,7 @@ public class ShootMissle : MonoBehaviour
     public Vector2 velocity;
     bool canShoot = true;
     public Vector2 offset = new Vector2(0.3f, 0.3f);
-    public float cooldown = 0.5f;
+    public float cooldown = 0.8f;
     public float charge = 0.5f;
     private Animator animation;
 

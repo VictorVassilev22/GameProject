@@ -474,7 +474,7 @@ Prefab:
     - target: {fileID: 114870223632323368, guid: 543e0894f1ff14c4ca749b1b603b7be4,
         type: 2}
       propertyPath: cooldown
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 114870223632323368, guid: 543e0894f1ff14c4ca749b1b603b7be4,
         type: 2}
@@ -691,7 +691,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10.282085
+  orthographic size: 10.405661
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
