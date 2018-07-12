@@ -81,8 +81,8 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.58, y: 0.56}
-    newSize: {x: 0.58, y: 0.56}
+    oldSize: {x: 0.68, y: 1.02}
+    newSize: {x: 0.68, y: 1.02}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -142,6 +142,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   offset: {x: 0.3, y: 0.3}
   cooldown: 1
+  charge: 0.65
 --- !u!212 &212301378222216858
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -182,7 +183,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.58, y: 0.56}
+  m_Size: {x: 0.68, y: 1.02}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

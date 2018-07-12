@@ -242,6 +242,44 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 786270577}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1002755097 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1420625098186358, guid: 543e0894f1ff14c4ca749b1b603b7be4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1063727991}
+--- !u!60 &1002755098
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1002755097}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.68, y: 1.02}
+    newSize: {x: 0.68, y: 1.02}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.08, y: 0.03}
+      - {x: -0.28, y: -0.089999996}
+      - {x: -0.29999998, y: -0.099999994}
+      - {x: -0.29999998, y: -0.35999998}
+      - {x: -0.19, y: -0.47}
+      - {x: 0.11, y: -0.47}
+      - {x: 0.32, y: -0.28}
+      - {x: 0.32, y: -0.11}
+      - {x: 0.14999999, y: 0.03}
 --- !u!1 &1054705958
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,17 +459,17 @@ Prefab:
     - target: {fileID: 60157382617182282, guid: 543e0894f1ff14c4ca749b1b603b7be4,
         type: 2}
       propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 60157382617182282, guid: 543e0894f1ff14c4ca749b1b603b7be4,
         type: 2}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
+      value: 0.68
       objectReference: {fileID: 0}
     - target: {fileID: 60157382617182282, guid: 543e0894f1ff14c4ca749b1b603b7be4,
         type: 2}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1
+      value: 1.02
       objectReference: {fileID: 0}
     - target: {fileID: 114870223632323368, guid: 543e0894f1ff14c4ca749b1b603b7be4,
         type: 2}
@@ -441,9 +479,25 @@ Prefab:
     - target: {fileID: 114870223632323368, guid: 543e0894f1ff14c4ca749b1b603b7be4,
         type: 2}
       propertyPath: charge
-      value: 0.65
+      value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 212301378222216858, guid: 543e0894f1ff14c4ca749b1b603b7be4,
+        type: 2}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212301378222216858, guid: 543e0894f1ff14c4ca749b1b603b7be4,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 212301378222216858, guid: 543e0894f1ff14c4ca749b1b603b7be4,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 1.02
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 60157382617182282, guid: 543e0894f1ff14c4ca749b1b603b7be4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 543e0894f1ff14c4ca749b1b603b7be4, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1087331669
