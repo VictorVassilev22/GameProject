@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Accelerator : MonoBehaviour {
     public float speed = 250f;
-    private Rigidbody rbody;
+    private Rigidbody2D rbody;
     private float horiz;
 
 
     private void Awake()
     {
-        rbody = GetComponent<Rigidbody>();
+        rbody = GetComponent<Rigidbody2D>();
     }
     // Update is called once per frame
     void Update () {
