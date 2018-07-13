@@ -141,8 +141,8 @@ MonoBehaviour:
   missle: {fileID: 0}
   velocity: {x: 0, y: 0}
   offset: {x: 0.3, y: 0.3}
-  cooldown: 1
-  charge: 0.65
+  cooldown: 0.8
+  charge: 0.6
 --- !u!212 &212301378222216858
 SpriteRenderer:
   m_ObjectHideFlags: 1
