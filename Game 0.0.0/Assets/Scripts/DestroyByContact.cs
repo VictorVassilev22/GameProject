@@ -3,10 +3,12 @@ using System.Collections;
 
 public class DestroyByContact : MonoBehaviour
 {
-    public GameObject enemy;
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter2D(Collision2D col) // -the collision function and parameter must be for 2D
     {
-        Destroy(other.gameObject); //- Destroys the ball when hit the Enemy
-        Destroy(enemy); //-Destroys the enemy
+        if (col.gameObject.name == "missile(Clone)") // check if the object colliding is the missle
+        {
+            Destroy(col.gameObject);//destroy the missle
+            Destroy(this.gameObject); //destroy the enemy
+        }
     }
 }
