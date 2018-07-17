@@ -5,15 +5,27 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
 
     public GameObject hazard;
-    public Vector3 spawnValues;
-    void Start()
+    public Vector2 spawnValues;
+    private bool canSpawn = true;
+    public float cooldown = 1.0f;
+    void Update()
     {
+        if(canSpawn)
         SpawnWaves();
     }
+
     void SpawnWaves()
     {
-        Vector3 spawnPosition = new Vector3(Random.Range (-spawnValues.x ,spawnValues.x) ,spawnValues.y ,spawnValues.z);
+        Vector2 spawnPosition = new Vector2(Random.Range (-spawnValues.x ,spawnValues.x) ,spawnValues.y);
         Quaternion spawnRotation = Quaternion.identity;
         Instantiate(hazard, spawnPosition, spawnRotation);
+        StartCoroutine(StartCooldown());
+    }
+
+    IEnumerator StartCooldown()
+    {
+        canSpawn = false;
+        yield return new WaitForSeconds(cooldown);
+        canSpawn = true;
     }
 }
