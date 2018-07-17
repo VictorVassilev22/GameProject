@@ -170,7 +170,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 567378974}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -325,10 +325,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 567378974}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66d2dc30867384c50ad30eeb882ae288, type: 3}
+  m_Script: {fileID: 11500000, guid: 20ad08a64d81d6643b7f1ffadf55e357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 100004, guid: 8eb061798df124228a33419578d247da, type: 2}
+  health: 50
+  moveSpeed: 3
+  velocity: {x: 0, y: -1}
 --- !u!212 &567378978
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -381,7 +383,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 567378974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.18, y: 7.97, z: 0}
+  m_LocalPosition: {x: -0.18, y: 7.97, z: 42.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
