@@ -1469,12 +1469,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hazard: {fileID: 1315993614805490, guid: 2d8171c681255974f8a34e977350cb0b, type: 2}
-  spawnValues: {x: 5.5, y: 12}
-  GUIClick: 0
+  spawnValues: {x: 5, y: 12}
   cooldown: 3
   score: 0
   highScore: 0
   enemiesPassed: 0
+  enemySpd: 2
   showScore: {fileID: 332416172}
   showHighScore: {fileID: 1379189347}
   enemiesPassedText: {fileID: 580732325}

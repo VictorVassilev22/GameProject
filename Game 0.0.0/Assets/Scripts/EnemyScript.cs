@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyScript : MonoBehaviour
 {
     public float health = 25.0f;
-    public static float moveSpeed = 2.0f;
+    public float moveSpeed;
     public Vector2 velocity; // По у е зададено на -1 в Unity
     public float experience = 12.5f;
     private GameObject gameCtrl;
@@ -12,11 +12,12 @@ public class EnemyScript : MonoBehaviour
 
     private void Start()
     {
-        this.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x, velocity.y * transform.localScale.y*moveSpeed); //Zadawame skorost
         Transform player = GameObject.Find("Player").transform;
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), this.GetComponent<Collider2D>());
         gameCtrl = GameObject.Find("GameController");
         gameCtrlScript = gameCtrl.GetComponent<GameController>();
+        moveSpeed = gameCtrlScript.enemySpd;
+        this.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x, velocity.y * transform.localScale.y *moveSpeed); //Zadawame skorost
     }
 
     void OnCollisionEnter2D(Collision2D col) // -the collision function and parameter must be for 2D
@@ -39,7 +40,6 @@ public class EnemyScript : MonoBehaviour
 
     void Update()
     {
-        moveSpeed+= 0.00025f;
         if (this.transform.position.y<=-13)
         {
             Destroy(this.gameObject);
