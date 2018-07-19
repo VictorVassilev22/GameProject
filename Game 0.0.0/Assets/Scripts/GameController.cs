@@ -122,7 +122,7 @@ public class GameController : MonoBehaviour {
     {
         Time.timeScale = 0f;
         canScore = false;
-        savedSpeed = rollScr.speed;
+        savedSpeed = 0.5f;
         rollScr.speed = 0f;
         rollScr.canAdd = false;
         pause.enabled = false;

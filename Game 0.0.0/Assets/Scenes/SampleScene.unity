@@ -1076,7 +1076,7 @@ Prefab:
     - target: {fileID: 114870223632323368, guid: 543e0894f1ff14c4ca749b1b603b7be4,
         type: 2}
       propertyPath: offset.y
-      value: 0.5
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4623790441003652, guid: 543e0894f1ff14c4ca749b1b603b7be4, type: 2}
       propertyPath: m_LocalScale.x
@@ -1144,7 +1144,7 @@ Prefab:
     - target: {fileID: 114870223632323368, guid: 543e0894f1ff14c4ca749b1b603b7be4,
         type: 2}
       propertyPath: chargeTime
-      value: 0.58
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 212301378222216858, guid: 543e0894f1ff14c4ca749b1b603b7be4,
         type: 2}
@@ -1501,7 +1501,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4793248294827062, guid: ab14c33f5af8f1a49aa41622a096c17d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.29
+      value: -2.32
       objectReference: {fileID: 0}
     - target: {fileID: 4793248294827062, guid: ab14c33f5af8f1a49aa41622a096c17d, type: 2}
       propertyPath: m_LocalPosition.y
