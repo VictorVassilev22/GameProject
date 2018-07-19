@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyScript : MonoBehaviour
 {
     public float health = 25.0f;
-    public float moveSpeed = 1.0f;
+    public static float moveSpeed = 2.0f;
     public Vector2 velocity; // По у е зададено на -1 в Unity
     public float experience = 12.5f;
     private GameObject gameCtrl;
@@ -27,22 +27,24 @@ public class EnemyScript : MonoBehaviour
             MissleScript missleScript = missle.GetComponent<MissleScript>();
             this.health -= missleScript.attack;
             Destroy(col.gameObject);
-            gameCtrlScript.score += experience;
         }
 
         if (health<=0.0f)
         {
             Destroy(this.gameObject);
+            gameCtrlScript.score += experience;
             //Instantiate(explosion, transform.position, transform.rotation);
         }
     }
 
     void Update()
     {
-        //this.moveSpeed+= gameCtrlScript.score / 1000f;
+        moveSpeed+= 0.00025f;
         if (this.transform.position.y<=-13)
         {
             Destroy(this.gameObject);
+            if(gameCtrlScript.enemiesPassed<10)
+                gameCtrlScript.enemiesPassed++;
         }
     }
 }

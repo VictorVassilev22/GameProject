@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ShootMissle : MonoBehaviour
 {
 
     public GameObject missle; //Нашата летяща топка
     public Vector2 velocity; //Скоростта, която е зададена на 14 по оста 'y' от Unity
-    bool canShoot = true; //Дали може да стреля
+    public bool canShoot = true; //Дали може да стреля
     public Vector2 offset = new Vector2(0f, 0.5f); //Разтоянието от което магьосника си прави топката
     public float cooldown = 0.8f; //Cooldown на изстрела
-    public float chargeTime = 0.6f; //Времето за зареждане на изстрела
-    private Animator animation; 
+    public float chargeTime = 0.58f; //Времето за зареждане на изстрела
+    private Animator animation;
 
     // Use this for initialization
     void Start()
@@ -23,14 +24,14 @@ public class ShootMissle : MonoBehaviour
     void Update()
     {
 #if UNITY_ANDROID //При андроид използваме тъч системата
-          if (Input.touches.Length>0 && canShoot) //Ако повече от 1 пръст е поставен на екрана и героят ни може да стреля:
+          if (Input.touches.Length>0 && canShoot && !EventSystem.current.IsPointerOverGameObject()) //Ако повече от 1 пръст е поставен на екрана и героят ни може да стреля:
         {
             animation.SetTrigger("shootTrigger"); //задействаме анимацията
             StartCoroutine(Charge()); // топката се зарежда и изстрелва
             StartCoroutine(ShootCooldown()); //пускаме cooldown
         }
 #endif
-        if (Input.GetMouseButtonDown(0) && canShoot)
+        if (Input.GetMouseButtonDown(0) && canShoot && !EventSystem.current.IsPointerOverGameObject())
         { //abe sushtoto ama za komp
             animation.SetTrigger("shootTrigger");
             StartCoroutine(Charge());
