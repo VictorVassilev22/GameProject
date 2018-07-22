@@ -9,19 +9,17 @@ public class GameController : MonoBehaviour {
 
     public GameObject hazard;
     public Vector2 spawnValues;
-    private Button restart;
-    private Button play;
-    private Button pause;
 
-    private bool gameRunning = true;
-    private bool canSpawn = true;
-    private bool canScore = true;
+
+    public bool gameRunning = true;
+    public bool canSpawn = true;
+    public bool canScore = true;
 
     public float cooldown = 3.0f;
     public float score = 0.0f;
     public float highScore = 0.0f;
     public int enemiesPassed = 0;
-    private float savedSpeed;
+    public float savedSpeed;
 
     public static float moveSpeed = 2.0f;
     public float enemySpd = moveSpeed;
@@ -36,21 +34,14 @@ public class GameController : MonoBehaviour {
     private ShootMissle shoot;
     private RollingScript rollScr;
     private EnemyScript enemyScr;
+    private PauseMenuScript pmScr;
 
     private void Start()
     {
         showHighScore.text = PlayerPrefs.GetInt("Text(3)", 0).ToString();
         shoot = GameObject.Find("Player").GetComponent<ShootMissle>();
-        restart = GameObject.Find("Restart").GetComponent<Button>();
-        play = GameObject.Find("Play").GetComponent<Button>();
-        pause = GameObject.Find("Pause").GetComponent<Button>();
-        pause.onClick.AddListener(Pause);
-        play.onClick.AddListener(Play);
-        restart.enabled = false;
-        restart.GetComponent<Image>().enabled = false;
-        restart.onClick.AddListener(RestartGame);
+        pmScr = GameObject.Find("PauseMenu").GetComponent<PauseMenuScript>();
         rollScr = GameObject.Find("Street").GetComponent<RollingScript>();
-        enemyScr = GameObject.Find("Enemy").GetComponent<EnemyScript>();
     }
 
     void Update()
@@ -105,49 +96,9 @@ public class GameController : MonoBehaviour {
         canScore = false;
         shoot.canShoot = false;
         rollScr.canAdd = false;
+        pmScr.pause.enabled = false;
         StartCoroutine(GameEndWait());
     }
-
-    void RestartGame()
-    {
-        cooldown = 3.0f;
-        rollScr.speed = 0.5f;
-        rollScr.canAdd = true;
-        Time.timeScale = 1f;
-        resetMoveSpeed();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    void Pause()
-    {
-        Time.timeScale = 0f;
-        canScore = false;
-        savedSpeed = 0.5f;
-        rollScr.speed = 0f;
-        rollScr.canAdd = false;
-        pause.enabled = false;
-        pause.GetComponent<Image>().enabled = false;
-        play.enabled = true;
-        play.GetComponent<Image>().enabled = true;
-        restart.enabled = true;
-        restart.GetComponent<Image>().enabled = true;
-    }
-
-
-    void Play()
-    {
-        Time.timeScale = 1f;
-        canScore = true;
-        rollScr.speed = savedSpeed;
-        rollScr.canAdd = true;
-        pause.enabled = true;
-        pause.GetComponent<Image>().enabled = true;
-        play.enabled = false;
-        play.GetComponent<Image>().enabled = false;
-        restart.enabled = false;
-        restart.GetComponent<Image>().enabled = false;
-    }
-
 
     public void resetMoveSpeed()
     {
@@ -159,8 +110,8 @@ public class GameController : MonoBehaviour {
         yield return new WaitForSeconds(7.5f);
         Time.timeScale = 0f;
         rollScr.speed = 0f;
-        restart.enabled = true;
-        restart.GetComponent<Image>().enabled = true;
+        pmScr.restart.enabled = true;
+        pmScr.restart.GetComponent<Image>().enabled = true;
     }
 
     IEnumerator StartCooldown()

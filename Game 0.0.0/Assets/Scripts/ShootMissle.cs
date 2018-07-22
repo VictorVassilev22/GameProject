@@ -14,29 +14,42 @@ public class ShootMissle : MonoBehaviour
     public float chargeTime = 0.58f; //Времето за зареждане на изстрела
     private Animator animation;
 
+    private GameController ctrlScript;
+
     // Use this for initialization
     void Start()
     {
          animation = GetComponent<Animator>(); //закачаме нашия аниматор за animate
+        ctrlScript = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
     // Update is called once per frame
     void Update()
     {
 #if UNITY_ANDROID //При андроид използваме тъч системата
-          if (Input.touches.Length>0 && canShoot && !EventSystem.current.IsPointerOverGameObject()) //Ако повече от 1 пръст е поставен на екрана и героят ни може да стреля:
+          if (Input.touches.Length>0 && canShoot && !IsPointerOverUIObject()) //Ако повече от 1 пръст е поставен на екрана и героят ни може да стреля:
         {
             animation.SetTrigger("shootTrigger"); //задействаме анимацията
             StartCoroutine(Charge()); // топката се зарежда и изстрелва
             StartCoroutine(ShootCooldown()); //пускаме cooldown
         }
 #endif
-        if (Input.GetMouseButtonDown(0) && canShoot && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButtonDown(0) && canShoot && !IsPointerOverUIObject())
         { //abe sushtoto ama za komp
             animation.SetTrigger("shootTrigger");
             StartCoroutine(Charge());
             StartCoroutine(ShootCooldown());
         }
+    }
+
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition,results);
+        return results.Count > 0;
     }
 
 
@@ -57,6 +70,6 @@ public class ShootMissle : MonoBehaviour
     {
         canShoot = false; //героя вече не може да стреля
         yield return new WaitForSeconds(cooldown); //чакаме даденото време
-        canShoot = true; // пак може да стреля
+        if(ctrlScript.gameRunning) canShoot = true; // пак може да стреля
     }
 }
