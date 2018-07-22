@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour {
     public bool gameRunning = true;
     public bool canSpawn = true;
     public bool canScore = true;
+    public bool canSpeed = true;
+    public bool canShortCooldown = true;
 
     public float cooldown = 3.0f;
     public float score = 0.0f;
@@ -54,7 +56,7 @@ public class GameController : MonoBehaviour {
         score += 0.1f;
 
         if(cooldown>1.0f)
-        cooldown-=0.0004f;
+       if(canShortCooldown) cooldown-=0.0004f;
 
         int intScore = (int)score;
         showScore.text = (intScore).ToString();
@@ -64,7 +66,7 @@ public class GameController : MonoBehaviour {
             showHighScore.text = intScore.ToString();
         }
 
-        moveSpeed += 0.00045f;
+        if(canSpeed)moveSpeed += 0.00045f;
         enemySpd = moveSpeed;
 
         if (HealthBarScript.health <= 0)

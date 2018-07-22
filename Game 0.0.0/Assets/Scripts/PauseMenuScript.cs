@@ -32,9 +32,11 @@ public class PauseMenuScript : MonoBehaviour {
     {
         Time.timeScale = 0f;
         ctrlScript.canScore = false;
-        ctrlScript.savedSpeed = 0.5f;
+        ctrlScript.savedSpeed = rollScr.speed;
         rollScr.speed = 0f;
         rollScr.canAdd = false;
+        ctrlScript.canShortCooldown = false;
+        ctrlScript.canSpeed = false;
         play.GetComponent<Image>().enabled = true;
         restart.GetComponent<Image>().enabled = true;
     }
@@ -44,6 +46,8 @@ public class PauseMenuScript : MonoBehaviour {
         ctrlScript.canScore = true;
         rollScr.speed = ctrlScript.savedSpeed;
         rollScr.canAdd = true;
+        ctrlScript.canShortCooldown = true;
+        ctrlScript.canSpeed = true;
         play.GetComponent<Image>().enabled = false;
         restart.GetComponent<Image>().enabled = false;
     }
