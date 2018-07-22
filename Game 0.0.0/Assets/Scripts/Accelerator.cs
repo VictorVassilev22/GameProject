@@ -6,8 +6,6 @@ public class Accelerator : MonoBehaviour {
     public float speed = 250f;
     private Rigidbody2D rbody;
     private float horiz;
-
-
     private void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();

@@ -8,5 +8,5 @@ public class MissleScript : MonoBehaviour {
 	void Start () {
         Destroy(this.gameObject, 0.7f);
 	}
-
+ 
 }

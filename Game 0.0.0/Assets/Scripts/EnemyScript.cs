@@ -29,8 +29,8 @@ public class EnemyScript : MonoBehaviour
             Destroy(this.gameObject);
             //Instantiate(explosion, transform.position, transform.rotation);
         }
-    }
 
+    }
     void Update()
     {
         if (this.transform.position.y<=-13)

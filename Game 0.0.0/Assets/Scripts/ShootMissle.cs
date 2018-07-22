@@ -35,6 +35,7 @@ public class ShootMissle : MonoBehaviour
             animation.SetTrigger("shootTrigger");
             StartCoroutine(Charge());
             StartCoroutine(ShootCooldown());
+            ManaBarScript.mana -= 10f;
         }
     }
 
@@ -57,5 +58,7 @@ public class ShootMissle : MonoBehaviour
         canShoot = false; //героя вече не може да стреля
         yield return new WaitForSeconds(cooldown); //чакаме даденото време
         canShoot = true; // пак може да стреля
+        ManaBarScript.mana += 5f;
     }
+
 }
