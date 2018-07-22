@@ -27,7 +27,6 @@ public class GameController : MonoBehaviour {
 
     public Text showScore;
     public Text showHighScore;
-    public Text enemiesPassedText;
     public Text gameOverTxt;
 
     private Vector2 lastPos = new Vector2();
@@ -35,6 +34,8 @@ public class GameController : MonoBehaviour {
     private RollingScript rollScr;
     private EnemyScript enemyScr;
     private PauseMenuScript pmScr;
+
+    public GameObject reset;
 
     private void Start()
     {
@@ -53,7 +54,7 @@ public class GameController : MonoBehaviour {
         score += 0.1f;
 
         if(cooldown>1.0f)
-        cooldown-=0.0002f;
+        cooldown-=0.0004f;
 
         int intScore = (int)score;
         showScore.text = (intScore).ToString();
@@ -63,14 +64,7 @@ public class GameController : MonoBehaviour {
             showHighScore.text = intScore.ToString();
         }
 
-        enemiesPassedText.text = enemiesPassed.ToString();
-
-        if (enemiesPassed >= 10)
-        {
-            EndGame();
-        }
-
-        moveSpeed += 0.00025f;
+        moveSpeed += 0.00045f;
         enemySpd = moveSpeed;
 
         if (HealthBarScript.health <= 0)
@@ -81,15 +75,16 @@ public class GameController : MonoBehaviour {
 
     void SpawnWaves()
     {
-        for (int i = 0; i <=(int)score/1000; i++)
+        for (int i = 0; i <=5; i++)
         {
             Vector2 spawnPosition = new Vector2(UnityEngine.Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y);
             Quaternion spawnRotation = Quaternion.identity;
 
-            if(lastPos.x-spawnPosition.x>=2.7f||i==0)
-            Instantiate(hazard, spawnPosition, spawnRotation);
-
-            lastPos = spawnPosition;
+            if (lastPos.x - spawnPosition.x >= 2.7f || i == 0)
+            {
+                Instantiate(hazard, spawnPosition, spawnRotation);
+                lastPos = spawnPosition;
+            }
         }
         StartCoroutine(StartCooldown());
     }
@@ -117,6 +112,7 @@ public class GameController : MonoBehaviour {
         rollScr.speed = 0f;
         pmScr.restart.enabled = true;
         pmScr.restart.GetComponent<Image>().enabled = true;
+        reset.SetActive(true);
     }
 
     IEnumerator StartCooldown()

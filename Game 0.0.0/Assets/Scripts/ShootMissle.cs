@@ -32,7 +32,10 @@ public class ShootMissle : MonoBehaviour
             animation.SetTrigger("shootTrigger"); //задействаме анимацията
             StartCoroutine(Charge()); // топката се зарежда и изстрелва
             StartCoroutine(ShootCooldown()); //пускаме cooldown
-            ManaBarScript.mana -= 10f;
+            if (ManaBarScript.mana - 10 >= 0)
+            {
+                ManaBarScript.mana -= 10f;
+            }
         }
 #endif
         if (Input.GetMouseButtonDown(0) && canShoot && !IsPointerOverUIObject() && ManaBarScript.hasManaForMissle)
@@ -40,7 +43,10 @@ public class ShootMissle : MonoBehaviour
             animation.SetTrigger("shootTrigger");
             StartCoroutine(Charge());
             StartCoroutine(ShootCooldown());
-            ManaBarScript.mana -= 10f;
+            if (ManaBarScript.mana-10>=0)
+            {
+                ManaBarScript.mana -= 10f;
+            }
         }
   
     }
@@ -74,9 +80,7 @@ public class ShootMissle : MonoBehaviour
         canShoot = false; //героя вече не може да стреля
         yield return new WaitForSeconds(cooldown); //чакаме даденото време
         canShoot = true; // пак може да стреля
-        ManaBarScript.mana += 5f;
-        if(ctrlScript.gameRunning) canShoot = true; // пак може да стреля
+        if (ctrlScript.gameRunning) canShoot = true; // пак може да стреля
 
     }
-
 }

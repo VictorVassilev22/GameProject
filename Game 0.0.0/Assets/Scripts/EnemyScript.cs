@@ -45,8 +45,7 @@ public class EnemyScript : MonoBehaviour {
         if (this.transform.position.y <= -13)
         {
             Destroy(this.gameObject);
-            if (gameCtrlScript.enemiesPassed < 10)
-                gameCtrlScript.enemiesPassed++;
+            
         }
     }
 }

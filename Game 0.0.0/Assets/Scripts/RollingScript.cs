@@ -12,6 +12,6 @@ public class RollingScript : MonoBehaviour {
 
         Vector2 offset = new Vector2(0, Time.time * speed);
         GetComponent<Renderer>().material.mainTextureOffset = offset;
-        if(canAdd) this.speed += 0.000025f;
+        if(canAdd) this.speed += 0.00006f;
 	}
 }
