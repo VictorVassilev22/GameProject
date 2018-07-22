@@ -27,20 +27,22 @@ public class ShootMissle : MonoBehaviour
     void Update()
     {
 #if UNITY_ANDROID //При андроид използваме тъч системата
-          if (Input.touches.Length>0 && canShoot && !IsPointerOverUIObject()) //Ако повече от 1 пръст е поставен на екрана и героят ни може да стреля:
+          if (Input.touches.Length>0 && canShoot && !IsPointerOverUIObject() && ManaBarScript.hasManaForMissle) //Ако повече от 1 пръст е поставен на екрана и героят ни може да стреля:
         {
             animation.SetTrigger("shootTrigger"); //задействаме анимацията
             StartCoroutine(Charge()); // топката се зарежда и изстрелва
             StartCoroutine(ShootCooldown()); //пускаме cooldown
+            ManaBarScript.mana -= 10f;
         }
 #endif
-        if (Input.GetMouseButtonDown(0) && canShoot && !IsPointerOverUIObject())
+        if (Input.GetMouseButtonDown(0) && canShoot && !IsPointerOverUIObject() && ManaBarScript.hasManaForMissle)
         { //abe sushtoto ama za komp
             animation.SetTrigger("shootTrigger");
             StartCoroutine(Charge());
             StartCoroutine(ShootCooldown());
             ManaBarScript.mana -= 10f;
         }
+  
     }
 
     private bool IsPointerOverUIObject()
@@ -71,12 +73,10 @@ public class ShootMissle : MonoBehaviour
     {
         canShoot = false; //героя вече не може да стреля
         yield return new WaitForSeconds(cooldown); //чакаме даденото време
-<<<<<<< HEAD
         canShoot = true; // пак може да стреля
         ManaBarScript.mana += 5f;
-=======
         if(ctrlScript.gameRunning) canShoot = true; // пак може да стреля
->>>>>>> b9a3a9eed1053411a87b4a7879b81bafd3db883f
+
     }
 
 }

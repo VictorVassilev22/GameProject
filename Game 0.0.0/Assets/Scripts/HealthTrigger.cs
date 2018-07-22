@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class EnemyScript2 : MonoBehaviour
+public class HealthTrigger : MonoBehaviour
 {
     //private HealthBarScript HP;
     //void OnCollisionEnter2D(Collision2D col)
@@ -16,6 +16,7 @@ public class EnemyScript2 : MonoBehaviour
     //}
     void OnTriggerEnter2D(Collider2D col)
     {
+        if(col.gameObject.name=="Player")
         HealthBarScript.health -= 10f;
     }
 }

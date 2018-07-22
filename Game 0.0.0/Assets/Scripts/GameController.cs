@@ -72,6 +72,11 @@ public class GameController : MonoBehaviour {
 
         moveSpeed += 0.00025f;
         enemySpd = moveSpeed;
+
+        if (HealthBarScript.health <= 0)
+        {
+            EndGame();
+        }
     }
 
     void SpawnWaves()
