@@ -19,8 +19,8 @@ TagManager:
   - Enemies
   - Player
   - GUI
-  - 
-  - 
+  - CoinsAndPotions
+  - Missles
   - 
   - 
   - 
@@ -48,6 +48,9 @@ TagManager:
     locked: 0
   - name: Enemies
     uniqueID: 38763145
+    locked: 0
+  - name: CoinsAndPotions
+    uniqueID: 570865705
     locked: 0
   - name: Player
     uniqueID: 139066099
