@@ -11,7 +11,10 @@ public class EnemyScript : MonoBehaviour {
     private GameObject gameCtrl;
     private GameController gameCtrlScript;
 
+    public Vector2 missleExplosionOffset= new Vector2(0.1f, -0.2f);
+
     public Rigidbody2D coin;
+    public GameObject explosion;
     public int coinCount = 5;
 
     private void Start()
@@ -32,6 +35,7 @@ public class EnemyScript : MonoBehaviour {
             GameObject missle = GameObject.Find("missle(Clone)");
             MissleScript missleScript = missle.GetComponent<MissleScript>();
             this.health -= missleScript.attack;
+            Instantiate(explosion, (Vector2)col.gameObject.transform.position + missleExplosionOffset * transform.localScale.y, col.gameObject.transform.rotation); 
             Destroy(col.gameObject);
 
             if (health <= 0.0f)
