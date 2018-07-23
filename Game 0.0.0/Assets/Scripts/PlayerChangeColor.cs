@@ -3,12 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerChangeColor : MonoBehaviour {
- void OnTriggerEnter2D(Collider2D col)
+    private SpriteRenderer sprRend;
+
+    private void Start()
+    {
+        sprRend = GetComponent<SpriteRenderer>();
+    }
+    void OnTriggerEnter2D(Collider2D col)
      {
-         if(col.gameObject.tag == "Enemy")
+         if(col.gameObject.name == "EnemySprite")
          {
-             col.gameObject.GetComponent<Renderer>().material.color = Color.red;
+            StartCoroutine(ChangeeColor());
          }
      }
-
+    IEnumerator ChangeeColor()
+    {
+        sprRend.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        sprRend.color = Color.white;
+    }
 }

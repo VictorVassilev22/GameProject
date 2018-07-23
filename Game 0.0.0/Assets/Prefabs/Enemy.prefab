@@ -366,7 +366,7 @@ MonoBehaviour:
   experience: 12.5
   missleExplosionOffset: {x: 0.1, y: -0.2}
   coin: {fileID: 50214253738933098, guid: aa0415bc05ff0d14d8b2de1b2d1aa80b, type: 2}
-  explosion: {fileID: 1417389108004450, guid: 3b173ca6bf9ea074a8838d357ea21b91, type: 2}
+  explosion: {fileID: 1240483299126890, guid: 3ee0461af96b0b84486cba50bc829318, type: 2}
   coinCount: 5
 --- !u!212 &212760435525574636
 SpriteRenderer:
