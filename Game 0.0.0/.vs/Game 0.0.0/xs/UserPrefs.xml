@@ -1,14 +1,14 @@
 ﻿<Properties StartupConfiguration="{85295202-1E85-7709-D806-F15467EC9DD5}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ManaBarScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerChangeColor.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameController.cs" Line="5" Column="46" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="5" Column="35" />
       <File FileName="Assets/Scripts/HealthBarScript.cs" Line="9" Column="28" />
       <File FileName="Assets/Scripts/ManaBarScript.cs" Line="22" Column="5" />
-      <File FileName="Assets/Scripts/EnemyScript2.cs" Line="16" Column="8" />
-      <File FileName="Assets/Scripts/ShootMissle.cs" Line="38" Column="39" />
+      <File FileName="Assets/Scripts/ShootMissle.cs" Line="38" Column="14" />
       <File FileName="Assets/Scripts/EnemyScript.cs" Line="14" Column="9" />
-      <File FileName="Assets/Scripts/MissleScript.cs" Line="11" Column="5" />
+      <File FileName="Assets/Scripts/MissleScript.cs" Line="11" Column="2" />
+      <File FileName="Assets/Scripts/PlayerChangeColor.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
