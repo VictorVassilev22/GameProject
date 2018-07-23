@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerChangeColor : MonoBehaviour {
     private SpriteRenderer sprRend;
-
+    private bool canChange = true;
     private void Start()
     {
         sprRend = GetComponent<SpriteRenderer>();
@@ -13,7 +13,7 @@ public class PlayerChangeColor : MonoBehaviour {
      {
          if(col.gameObject.name == "EnemySprite")
          {
-            StartCoroutine(ChangeeColor());
+           if(canChange) StartCoroutine(ChangeeColor());
          }
      }
     IEnumerator ChangeeColor()
@@ -21,5 +21,6 @@ public class PlayerChangeColor : MonoBehaviour {
         sprRend.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         sprRend.color = Color.white;
+        canChange = false;
     }
 }
