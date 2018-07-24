@@ -34,7 +34,6 @@ public class GameController : MonoBehaviour {
     private Vector2 lastPos = new Vector2();
     private ShootMissle shoot;
     private RollingScript rollScr;
-    private EnemyScript enemyScr;
     private PauseMenuScript pmScr;
 
     public GameObject reset;

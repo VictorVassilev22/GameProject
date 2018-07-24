@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class PlayerChangeColor : MonoBehaviour {
     private SpriteRenderer sprRend;
-    private bool canChange = true;
+
     private void Start()
     {
-        sprRend = GetComponent<SpriteRenderer>();
+        sprRend = GameObject.Find("Player").GetComponent<SpriteRenderer>();
     }
-    void OnTriggerEnter2D(Collider2D col)
+    public void changeColor()
      {
-         if(col.gameObject.name == "EnemySprite")
-         {
-           if(canChange) StartCoroutine(ChangeeColor());
-         }
+                StartCoroutine(ChangeColor());
      }
-    IEnumerator ChangeeColor()
+    IEnumerator ChangeColor()
     {
         sprRend.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         sprRend.color = Color.white;
-        canChange = false;
     }
 }
