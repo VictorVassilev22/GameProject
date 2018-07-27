@@ -21,6 +21,8 @@ public class PauseMenuScript : MonoBehaviour {
     }
   public void RestartGame()
     {
+        GameController.gameRunning = true;
+        CoinScript.coinCount = 0;
         ctrlScript.cooldown = 3.0f;
         ctrlScript.savedSpeed = 0.5f;
         rollScr.speed = 0.5f;

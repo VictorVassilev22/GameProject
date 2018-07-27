@@ -17,5 +17,6 @@ public class HealthBarScript : MonoBehaviour {
 	
 	void Update () {
         healthBar.fillAmount = health / maxHealth;
+        if (health > maxHealth) health = maxHealth;
 	}
 }

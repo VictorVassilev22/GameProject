@@ -11,19 +11,25 @@ public class EnemyScript : MonoBehaviour {
     private GameObject gameCtrl;
     private GameController gameCtrlScript;
 
+    private int manaPotionChance;
+    private int healthPotionChance;
+    public int healthPercentage = 5;
+    public int manaPercentage = 5;
+
     public Vector2 missleExplosionOffset= new Vector2(0.1f, -0.2f);
 
     public Rigidbody2D coin;
+    public Rigidbody2D healthPotion;
+    public Rigidbody2D manaPotion;
     public GameObject explosion;
     public int coinCount = 5;
 
     private void Start()
     {
-        Transform player = GameObject.Find("Player").transform;
         // Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), this.GetComponent<Collider2D>());
         gameCtrl = GameObject.Find("GameController");
         gameCtrlScript = gameCtrl.GetComponent<GameController>();
-        moveSpeed = gameCtrlScript.enemySpd;
+        moveSpeed = GameController.enemySpd;
         this.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x, velocity.y * transform.localScale.y * moveSpeed); //Zadawame skorost
         Physics2D.IgnoreLayerCollision(12,13);
     }
@@ -46,7 +52,23 @@ public class EnemyScript : MonoBehaviour {
                     coinInstance = Instantiate(coin, this.transform.position, this.transform.rotation);
                     coinInstance.AddForce(new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)) * Random.Range(-250, 250));
                 }
-                Destroy(this.transform.GetChild(1).gameObject);
+
+                healthPotionChance = Random.Range(0,100);
+                manaPotionChance = Random.Range(0,100);
+
+                if (healthPotionChance<=healthPercentage)
+                {
+                    Rigidbody2D hpInstance;
+                    hpInstance = Instantiate(healthPotion, this.transform.position, this.transform.rotation);
+                    hpInstance.AddForce(new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)) * Random.Range(-500, 500));
+                }else if (manaPotionChance<=manaPercentage)
+                {
+                    Rigidbody2D mpInstance;
+                    mpInstance = Instantiate(manaPotion, this.transform.position, this.transform.rotation);
+                    mpInstance.AddForce(new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)) * Random.Range(-500, 500));
+                }
+
+;                Destroy(this.transform.GetChild(0).gameObject);
                 gameCtrlScript.score += experience;
             }
         }

@@ -9,18 +9,16 @@ public class ShootMissle : MonoBehaviour
     public GameObject missle; //Нашата летяща топка
     public Vector2 velocity; //Скоростта, която е зададена на 14 по оста 'y' от Unity
     public bool canShoot = true; //Дали може да стреля
-    public Vector2 offset = new Vector2(0f, 0.5f); //Разтоянието от което магьосника си прави топката
-    public float cooldown = 0.8f; //Cooldown на изстрела
-    public float chargeTime = 0.58f; //Времето за зареждане на изстрела
+    public Vector2 offset = new Vector2(0f, 0.3f); //Разтоянието от което магьосника си прави топката
+    public float cooldown =0.6f; //Cooldown на изстрела
+    public float chargeTime = 0.432f; //Времето за зареждане на изстрела
+    public float manaCost = 5f;
     private Animator animation;
-
-    private GameController ctrlScript;
 
     // Use this for initialization
     void Start()
     {
          animation = GetComponent<Animator>(); //закачаме нашия аниматор за animate
-        ctrlScript = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
     // Update is called once per frame
@@ -32,9 +30,9 @@ public class ShootMissle : MonoBehaviour
             animation.SetTrigger("shootTrigger"); //задействаме анимацията
             StartCoroutine(Charge()); // топката се зарежда и изстрелва
             StartCoroutine(ShootCooldown()); //пускаме cooldown
-            if (ManaBarScript.mana - 10 >= 0)
+            if (ManaBarScript.mana - manaCost >= 0)
             {
-                ManaBarScript.mana -= 10f;
+                ManaBarScript.mana -= manaCost;
             }
         }
 #endif
@@ -43,9 +41,9 @@ public class ShootMissle : MonoBehaviour
             animation.SetTrigger("shootTrigger");
             StartCoroutine(Charge());
             StartCoroutine(ShootCooldown());
-            if (ManaBarScript.mana-10>=0)
+            if (ManaBarScript.mana-manaCost>=0)
             {
-                ManaBarScript.mana -= 10f;
+                ManaBarScript.mana -= manaCost;
             }
         }
   
@@ -79,8 +77,7 @@ public class ShootMissle : MonoBehaviour
     {
         canShoot = false; //героя вече не може да стреля
         yield return new WaitForSeconds(cooldown); //чакаме даденото време
-        canShoot = true; // пак може да стреля
-        if (ctrlScript.gameRunning) canShoot = true; // пак може да стреля
+        if (GameController.gameRunning) canShoot = true; // пак може да стреля
 
     }
 }

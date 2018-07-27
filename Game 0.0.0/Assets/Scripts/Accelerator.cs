@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Accelerator : MonoBehaviour {
-    public float speed = 250f;
+    public float speed = 800f;
     private Rigidbody2D rbody;
     private float horiz;
     private void Awake()

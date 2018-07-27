@@ -1,9 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using System;
 
 public class GameController : MonoBehaviour {
 
@@ -11,7 +8,7 @@ public class GameController : MonoBehaviour {
     public Vector2 spawnValues;
 
 
-    public bool gameRunning = true;
+    public static bool gameRunning = true;
     public bool canSpawn = true;
     public bool canScore = true;
     public bool canSpeed = true;
@@ -24,12 +21,14 @@ public class GameController : MonoBehaviour {
     public float savedSpeed;
 
     public static float moveSpeed = 2.0f;
-    public float enemySpd = moveSpeed;
+    public static float enemySpd = moveSpeed;
     private float resetSpd = moveSpeed;
 
     public Text showScore;
     public Text showHighScore;
     public Text gameOverTxt;
+    public Text coinCounter;
+
 
     private Vector2 lastPos = new Vector2();
     private ShootMissle shoot;
@@ -59,13 +58,16 @@ public class GameController : MonoBehaviour {
 
         int intScore = (int)score;
         showScore.text = (intScore).ToString();
+
         if (score> PlayerPrefs.GetInt("Text(3)", 0))
         {
             PlayerPrefs.SetInt("Text(3)", intScore);
             showHighScore.text = intScore.ToString();
         }
 
-        if(canSpeed)moveSpeed += 0.00045f;
+        coinCounter.text = CoinScript.coinCount.ToString();
+
+        if (canSpeed)moveSpeed += 0.00045f;
         enemySpd = moveSpeed;
 
         if (HealthBarScript.health <= 0)
