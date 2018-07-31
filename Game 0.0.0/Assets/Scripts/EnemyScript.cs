@@ -68,7 +68,7 @@ public class EnemyScript : MonoBehaviour {
                     mpInstance.AddForce(new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)) * Random.Range(-500, 500));
                 }
 
-;                Destroy(this.transform.GetChild(0).gameObject);
+;                Destroy(this.gameObject);
                 gameCtrlScript.score += experience;
             }
         }

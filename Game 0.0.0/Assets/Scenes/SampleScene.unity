@@ -1676,13 +1676,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854bb35b6d0704399b4dd4e64b83e6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hazard: {fileID: 1307823180098226, guid: 5fe1f19ccd1a9674ebd49e31ef4a08bd, type: 2}
+  hazard: {fileID: 1690330057194326, guid: 6f83d12b2d6d445408e39951455cf168, type: 2}
   spawnValues: {x: 5, y: 12}
   canSpawn: 1
   canScore: 1
   canSpeed: 1
   canShortCooldown: 1
-  cooldown: 3
+  cooldown: 2
   score: 0
   highScore: 0
   enemiesPassed: 0

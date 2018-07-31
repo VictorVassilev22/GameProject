@@ -78,17 +78,17 @@ public class GameController : MonoBehaviour {
 
     void SpawnWaves()
     {
-        for (int i = 0; i <=5; i++)
-        {
+        //for (int i = 0; i <=5; i++)
+        //{
             Vector2 spawnPosition = new Vector2(UnityEngine.Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y);
             Quaternion spawnRotation = Quaternion.identity;
 
-            if (lastPos.x - spawnPosition.x >= 2.7f || i == 0)
-            {
+            //if (lastPos.x - spawnPosition.x >= 2.7f || i == 0)
+            //{
                 Instantiate(hazard, spawnPosition, spawnRotation);
-                lastPos = spawnPosition;
-            }
-        }
+              //  lastPos = spawnPosition;
+            //}
+        //}
         StartCoroutine(StartCooldown());
     }
 
