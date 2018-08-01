@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HPotScript : MonoBehaviour {
+    public GameObject healthEffect;
 
     void Update()
     {
@@ -17,7 +18,12 @@ public class HPotScript : MonoBehaviour {
         if (col.gameObject.name == "Player")
         {
             Destroy(this.gameObject);
-            if(GameController.gameRunning) HealthBarScript.health += 20f;
+            if (GameController.gameRunning)
+            {
+                HealthBarScript.health += 20f;
+                PotionEffect.ActivateEffect(col.transform, healthEffect);
+            }
         }
     }
+
 }

@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fd2bfd274fd3546883efa355f686f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manaEffect: {fileID: 1182879923321224, guid: 0ee821879d4e625499f229d56c2c5887, type: 2}
 --- !u!212 &212807983473496322
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -315,6 +315,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b43dce664f86cf040bbff7baf1225983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthEffect: {fileID: 1671562262692890, guid: 5121fb32761b02f4f98b2638c35f0af7,
+    type: 2}
 --- !u!212 &212230649723469436
 SpriteRenderer:
   m_ObjectHideFlags: 1
