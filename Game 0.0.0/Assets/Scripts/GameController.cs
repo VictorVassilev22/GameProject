@@ -80,7 +80,7 @@ public class GameController : MonoBehaviour {
     {
         //for (int i = 0; i <=5; i++)
         //{
-            Vector2 spawnPosition = new Vector2(UnityEngine.Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y);
+            Vector2 spawnPosition = new Vector2(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y);
             Quaternion spawnRotation = Quaternion.identity;
 
             //if (lastPos.x - spawnPosition.x >= 2.7f || i == 0)
@@ -95,8 +95,9 @@ public class GameController : MonoBehaviour {
     void EndGame()
     {
         gameOverTxt.text = "Game Over";
-        gameRunning = false;
+        //gameRunning = false;
         canScore = false;
+        canSpawn = false;
         shoot.canShoot = false;
         rollScr.canAdd = false;
         pmScr.pause.enabled = false;
