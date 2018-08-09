@@ -22,8 +22,9 @@ GameObject:
   - component: {fileID: 212807983473496322}
   - component: {fileID: 60359382262612530}
   - component: {fileID: 114780366494109536}
+  - component: {fileID: 114871273838090560}
   - component: {fileID: 50391678431555378}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: ManaPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,6 +265,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manaEffect: {fileID: 1182879923321224, guid: 0ee821879d4e625499f229d56c2c5887, type: 2}
+  text: {fileID: 1816859235795444, guid: 40202289f9bb4b3439d92947832de457, type: 2}
+  gain: 20
+--- !u!114 &114871273838090560
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1543796934732758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2c8c88aa26746429e88f35e0672251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0
+  hasTime: 0
 --- !u!212 &212807983473496322
 SpriteRenderer:
   m_ObjectHideFlags: 1

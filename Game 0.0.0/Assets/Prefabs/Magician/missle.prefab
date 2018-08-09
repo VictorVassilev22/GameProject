@@ -90,6 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack: 25
+  explosion: {fileID: 1240483299126890, guid: 3ee0461af96b0b84486cba50bc829318, type: 2}
+  missleExplosionOffset: {x: 0, y: -0.05}
 --- !u!212 &212632375452755902
 SpriteRenderer:
   m_ObjectHideFlags: 1

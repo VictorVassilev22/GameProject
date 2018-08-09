@@ -25,38 +25,39 @@ public class ShootMissle : MonoBehaviour
     void Update()
     {
 #if UNITY_ANDROID //При андроид използваме тъч системата
-          if (Input.touches.Length>0 && canShoot && !IsPointerOverUIObject() && ManaBarScript.hasManaForMissle) //Ако повече от 1 пръст е поставен на екрана и героят ни може да стреля:
+          if (Input.touches.Length>0 && canShoot && ManaBarScript.hasManaForMissle && !IsPointerOverUIObject()) //Ако повече от 1 пръст е поставен на екрана и героят ни може да стреля:
         {
-            animation.SetTrigger("shootTrigger"); //задействаме анимацията
-            StartCoroutine(Charge()); // топката се зарежда и изстрелва
-            StartCoroutine(ShootCooldown()); //пускаме cooldown
-            if (ManaBarScript.mana - manaCost >= 0)
-            {
+             animation.SetTrigger("shootTrigger");
+                StartCoroutine(Charge());
+                StartCoroutine(ShootCooldown());
                 ManaBarScript.mana -= manaCost;
-            }
         }
 #endif
-        if (Input.GetMouseButtonDown(0) && canShoot && !IsPointerOverUIObject() && ManaBarScript.hasManaForMissle)
+        if (Input.GetMouseButtonDown(0) && canShoot && ManaBarScript.hasManaForMissle && !IsPointerOverUIObject())
         { //abe sushtoto ama za komp
-            animation.SetTrigger("shootTrigger");
-            StartCoroutine(Charge());
-            StartCoroutine(ShootCooldown());
-            if (ManaBarScript.mana-manaCost>=0)
-            {
+         
+                animation.SetTrigger("shootTrigger");
+                StartCoroutine(Charge());
+                StartCoroutine(ShootCooldown());
                 ManaBarScript.mana -= manaCost;
-            }
+
         }
   
     }
 
     private bool IsPointerOverUIObject()
-    {
+    {// *NEVER* overwrite this method
         PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
         eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventDataCurrentPosition,results);
-        return results.Count > 0;
+        for (int index = 0; index < results.Count; index++)
+        {
+            if (results[index].sortingLayer == -669637945) //-669637945 is the magic number that saved our gameplay mechanics
+                return true;
+        }
+        return false;
     }
 
 

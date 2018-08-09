@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212397570344780798}
   - component: {fileID: 50612106068143672}
   - component: {fileID: 114322300851749040}
+  - component: {fileID: 114126121803690248}
   - component: {fileID: 114413564049991044}
   - component: {fileID: 95642934514852896}
   - component: {fileID: 60316027269026388}
@@ -123,6 +124,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114126121803690248
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1690330057194326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2c8c88aa26746429e88f35e0672251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0
+  hasTime: 0
 --- !u!114 &114322300851749040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canTrigger: 1
+  damage: 10
 --- !u!114 &114413564049991044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,15 +165,12 @@ MonoBehaviour:
   moveSpeed: 5.5
   velocity: {x: 0, y: -1}
   experience: 12.5
-  healthPercentage: 3
-  manaPercentage: 3
-  missleExplosionOffset: {x: 0, y: -0.3}
+  percentage: 3
   coin: {fileID: 50214253738933098, guid: aa0415bc05ff0d14d8b2de1b2d1aa80b, type: 2}
   healthPotion: {fileID: 50931321054884956, guid: 3fe156468cfe3644b934875d0a1acc2a,
     type: 2}
   manaPotion: {fileID: 50391678431555378, guid: 086dcb70bc3bb7b47bbf401faa55168c,
     type: 2}
-  explosion: {fileID: 1240483299126890, guid: 3ee0461af96b0b84486cba50bc829318, type: 2}
   coinCount: 3
 --- !u!212 &212397570344780798
 SpriteRenderer:

@@ -5,14 +5,9 @@ using UnityEngine;
 public class MPotScript : MonoBehaviour {
 
     public GameObject manaEffect;
+    public GameObject text;
+    public float gain=20f;
 
-    void Update()
-    {
-        if (this.transform.position.y <= -13)
-        {
-            Destroy(this.gameObject);
-        }
-    }
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -22,7 +17,8 @@ public class MPotScript : MonoBehaviour {
             if (GameController.gameRunning)
             {
                 PotionEffect.ActivateEffect(col.transform, manaEffect);
-                ManaBarScript.mana += 20f;
+                ManaBarScript.mana += gain;
+                GameController.ShowText(gain, text, col.transform);
             }
         }
     }

@@ -28,6 +28,8 @@ public class GameController : MonoBehaviour {
     public Text showHighScore;
     public Text gameOverTxt;
     public Text coinCounter;
+    public GameObject healthText;
+    public GameObject manaText;
 
 
     private Vector2 lastPos = new Vector2();
@@ -43,6 +45,8 @@ public class GameController : MonoBehaviour {
         shoot = GameObject.Find("Player").GetComponent<ShootMissle>();
         pmScr = GameObject.Find("PauseMenu").GetComponent<PauseMenuScript>();
         rollScr = GameObject.Find("Street").GetComponent<RollingScript>();
+        ShowBarTexts();
+
     }
 
     void Update()
@@ -58,6 +62,7 @@ public class GameController : MonoBehaviour {
 
         int intScore = (int)score;
         showScore.text = (intScore).ToString();
+        ShowBarTexts();
 
         if (score> PlayerPrefs.GetInt("Text(3)", 0))
         {
@@ -75,7 +80,11 @@ public class GameController : MonoBehaviour {
             EndGame();
         }
     }
-
+    void ShowBarTexts()
+    {
+        healthText.GetComponent<TextMesh>().text = HealthBarScript.health.ToString() + " / " + HealthBarScript.maxHealth;
+        manaText.GetComponent<TextMesh>().text = (ManaBarScript.mana - 1).ToString() + " / " + (ManaBarScript.maxMana - 1);
+    }
     void SpawnWaves()
     {
         //for (int i = 0; i <=5; i++)
@@ -90,6 +99,15 @@ public class GameController : MonoBehaviour {
             //}
         //}
         StartCoroutine(StartCooldown());
+    }
+
+    public static void ShowText(float amount, GameObject textEffect, Transform transform)
+    {
+        var text = Instantiate(textEffect, (Vector2)transform.position, Quaternion.identity, transform);
+        if (amount >= 0)
+            text.GetComponent<TextMesh>().text = "+" + amount.ToString();
+        else
+            text.GetComponent<TextMesh>().text = amount.ToString();
     }
 
     void EndGame()
@@ -111,7 +129,7 @@ public class GameController : MonoBehaviour {
 
     IEnumerator GameEndWait()
     {
-        yield return new WaitForSeconds(7.5f);
+        yield return new WaitForSeconds(3f);
         Time.timeScale = 0f;
         rollScr.speed = 0f;
         pmScr.restart.enabled = true;

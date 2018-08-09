@@ -6,15 +6,16 @@ using UnityEngine;
 public class HealthTrigger : MonoBehaviour
 {
     public bool canTrigger = true;
+    public float damage = 10f;
 
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.name == "Player" && canTrigger)
+        if (col.gameObject.name == "Player" && canTrigger && HealthBarScript.canTakeDamage)
         {
-            HealthBarScript.health -= 10f;
+            HealthBarScript.health -= damage;
             canTrigger = false;
-            GameObject.Find("Player").GetComponent<PlayerChangeColor>().changeColor();
+            GameObject.Find("Player").GetComponent<PlayerGetsHit>().TakeDamage(damage);
         }
     }
 

@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class HPotScript : MonoBehaviour {
     public GameObject healthEffect;
-
-    void Update()
-    {
-        if (this.transform.position.y <= -13)
-        {
-            Destroy(this.gameObject);
-        }
-    }
+    public GameObject text;
+    public float gain = 20f;
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -20,8 +14,9 @@ public class HPotScript : MonoBehaviour {
             Destroy(this.gameObject);
             if (GameController.gameRunning)
             {
-                HealthBarScript.health += 20f;
+                HealthBarScript.health += gain;
                 PotionEffect.ActivateEffect(col.transform, healthEffect);
+                GameController.ShowText(gain, text, col.transform);
             }
         }
     }
