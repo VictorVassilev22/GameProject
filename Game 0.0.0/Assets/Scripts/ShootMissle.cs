@@ -12,7 +12,7 @@ public class ShootMissle : MonoBehaviour
     public Vector2 offset = new Vector2(0f, 0.3f); //Разтоянието от което магьосника си прави топката
     public float cooldown =0.6f; //Cooldown на изстрела
     public float chargeTime = 0.432f; //Времето за зареждане на изстрела
-    public float manaCost = 5f;
+    public float manaCost = 2.5f;
     private Animator animation;
 
     // Use this for initialization

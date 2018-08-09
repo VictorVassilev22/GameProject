@@ -14,9 +14,16 @@ public class HPotScript : MonoBehaviour {
             Destroy(this.gameObject);
             if (GameController.gameRunning)
             {
+                if (HealthBarScript.maxHealth<HealthBarScript.health+gain)
+                {
+                    GameController.ShowText(HealthBarScript.maxHealth-HealthBarScript.health, text, col.transform);
+                }
+                else
+                {
+                    GameController.ShowText(gain, text, col.transform);
+                }
                 HealthBarScript.health += gain;
                 PotionEffect.ActivateEffect(col.transform, healthEffect);
-                GameController.ShowText(gain, text, col.transform);
             }
         }
     }

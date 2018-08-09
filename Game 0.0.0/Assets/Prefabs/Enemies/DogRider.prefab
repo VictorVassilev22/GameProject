@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canTrigger: 1
-  damage: 10
+  damage: 6
 --- !u!114 &114413564049991044
 MonoBehaviour:
   m_ObjectHideFlags: 1
