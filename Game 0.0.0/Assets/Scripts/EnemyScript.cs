@@ -11,23 +11,46 @@ public class EnemyScript : MonoBehaviour {
     private GameObject gameCtrl;
     private GameController gameCtrlScript;
 
+    int index;
     private int chance;
-    public int percentage = 5;
 
-   
+    public struct DropOut
+    {
+        public int percentage;
+        public Rigidbody2D rigidbody;
+    }
 
     public Rigidbody2D coin;
-    public Rigidbody2D healthPotion;
-    public Rigidbody2D manaPotion;
 
-    public int coinCount = 5;
+    public Rigidbody2D healthPotionRB;
+    public Rigidbody2D manaPotionRB;
+    public Rigidbody2D magnetRB;
 
-    private List<Rigidbody2D> dropOuts = new List<Rigidbody2D>();
+    private DropOut healthPotion;
+    private DropOut manaPotion;
+    private DropOut magnet;
+
+
+    public int coinCount = 3;
+
+    private List<DropOut> dropOuts = new List<DropOut>();
 
     private void Start()
     {
+        healthPotion.percentage = 5;
+        healthPotion.rigidbody = healthPotionRB;
+
+        manaPotion.percentage = 5;
+        manaPotion.rigidbody = manaPotionRB;
+
+        magnet.percentage = 25;
+        magnet.rigidbody = magnetRB;
+
         dropOuts.Add(healthPotion);
         dropOuts.Add(manaPotion);
+        dropOuts.Add(magnet);
+
+
         gameCtrl = GameObject.Find("GameController");
         gameCtrlScript = gameCtrl.GetComponent<GameController>();
         moveSpeed = GameController.enemySpd;
@@ -47,20 +70,21 @@ public class EnemyScript : MonoBehaviour {
             {
                 InstantiateCoins(coinCount);
                 chance = Random.Range(0,100);
-                InstantiateDropOut(chance, percentage, dropOuts[Random.Range(0, dropOuts.Count)]);
+                index = Random.Range(0, dropOuts.Count);
+                InstantiateDropOut(chance, dropOuts[index]);
                  Destroy(this.gameObject);
                 gameCtrlScript.score += experience;
             }
         }
     }
 
-    void InstantiateDropOut(float chance, int percentage, Rigidbody2D dropOut)
+    void InstantiateDropOut(float chance, DropOut dropOut)
     {
-        if (chance <= percentage)
+        if (chance <= dropOut.percentage)
         {
             Rigidbody2D dropOutInstance;
-            dropOutInstance = Instantiate(dropOut, this.transform.position, this.transform.rotation);
-            dropOutInstance.AddForce(new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)) * Random.Range(-500, 500));
+            dropOutInstance = Instantiate(dropOut.rigidbody, this.transform.position, this.transform.rotation);
+            dropOutInstance.AddForce(new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)) * Random.Range(-150, 150));
         }
     }
 

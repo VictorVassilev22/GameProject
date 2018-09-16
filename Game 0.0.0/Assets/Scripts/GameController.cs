@@ -26,7 +26,6 @@ public class GameController : MonoBehaviour {
 
     public Text showScore;
     public Text showHighScore;
-    public Text gameOverTxt;
     public Text coinCounter;
     public GameObject healthText;
     public GameObject manaText;
@@ -97,7 +96,7 @@ public class GameController : MonoBehaviour {
                 Instantiate(hazard, spawnPosition, spawnRotation);
               //  lastPos = spawnPosition;
             //}
-        //}
+        // this commented code, once uncommented spawns up to 5 enemies a row!}
         StartCoroutine(StartCooldown());
     }
 
@@ -112,8 +111,6 @@ public class GameController : MonoBehaviour {
 
     void EndGame()
     {
-        gameOverTxt.text = "Game Over";
-        //gameRunning = false;
         canScore = false;
         canSpawn = false;
         shoot.canShoot = false;
