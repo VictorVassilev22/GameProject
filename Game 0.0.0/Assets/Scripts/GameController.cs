@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour {
     public GameObject manaText;
 
 
+
     private Vector2 lastPos = new Vector2();
     private ShootMissle shoot;
     private RollingScript rollScr;
@@ -100,7 +101,7 @@ public class GameController : MonoBehaviour {
         StartCoroutine(StartCooldown());
     }
 
-    public static void ShowText(float amount, GameObject textEffect, Transform transform)
+    public static void ShowTextEffect(float amount, GameObject textEffect, Transform transform)
     {
         var text = Instantiate(textEffect, (Vector2)transform.position, Quaternion.identity, transform);
         if (amount >= 0)

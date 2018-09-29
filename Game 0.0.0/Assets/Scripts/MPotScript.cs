@@ -19,12 +19,12 @@ public class MPotScript : MonoBehaviour {
                 if (ManaBarScript.maxMana < ManaBarScript.mana + gain)
                 {
                     float currentGain = ManaBarScript.maxMana - ManaBarScript.mana;
-                    GameController.ShowText(currentGain, text, col.transform);
+                    GameController.ShowTextEffect(currentGain, text, col.transform);
                     ManaBarScript.mana += currentGain;
                 }
                 else
                 {
-                    GameController.ShowText(gain, text, col.transform);
+                    GameController.ShowTextEffect(gain, text, col.transform);
                     ManaBarScript.mana += gain;
                 }
                 PotionEffect.ActivateEffect(col.transform, manaEffect);

@@ -16,9 +16,10 @@ public class CoinScript : MonoBehaviour {
     {
         player = GameObject.Find("Player");
     }
+
     private void Update()
     {
-        if (MagnetFieldActivation.magnetFieldEnabled && isInFieldRange)
+        if (PowerUpActivation.powerupEnablers[0] && isInFieldRange)
         {
             playerDirection = -(transform.position - player.transform.position).normalized;
             rb.velocity = new Vector2(playerDirection.x, playerDirection.y) * 175f * (Time.time / timeStamp);
@@ -27,7 +28,7 @@ public class CoinScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.name.Equals("MagnetField") && MagnetFieldActivation.magnetFieldEnabled)
+        if (col.gameObject.name.Equals("MagnetField") && PowerUpActivation.powerupEnablers[0])
         {
             isInFieldRange = true;
             timeStamp = Time.time;

@@ -14,7 +14,7 @@ public class PlayerGetsHit : MonoBehaviour {
      {
         StartCoroutine(ChangeColorTime());
         if(damageText)
-        GameController.ShowText(-damage, damageText, this.transform);
+        GameController.ShowTextEffect(-damage, damageText, this.transform);
      }
 
     IEnumerator ChangeColorTime()

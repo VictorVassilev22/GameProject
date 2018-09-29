@@ -164,13 +164,14 @@ MonoBehaviour:
   health: 25
   moveSpeed: 5.5
   velocity: {x: 0, y: -1}
-  experience: 12.5
+  bonus: 12.5
   coin: {fileID: 50214253738933098, guid: aa0415bc05ff0d14d8b2de1b2d1aa80b, type: 2}
   healthPotionRB: {fileID: 50931321054884956, guid: 3fe156468cfe3644b934875d0a1acc2a,
     type: 2}
   manaPotionRB: {fileID: 50391678431555378, guid: 086dcb70bc3bb7b47bbf401faa55168c,
     type: 2}
   magnetRB: {fileID: 50717225971358342, guid: 3aab24cc7d5f909488c004fffa8cbf57, type: 2}
+  shieldRB: {fileID: 50065625297278644, guid: e0d05fb3e73a0ae4390989d6a5c39830, type: 2}
   coinCount: 3
 --- !u!212 &212397570344780798
 SpriteRenderer:

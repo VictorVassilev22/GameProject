@@ -7,7 +7,7 @@ public class EnemyScript : MonoBehaviour {
     public float health = 25.0f;
     public float moveSpeed;
     public Vector2 velocity; // По у е зададено на -1 в Unity
-    public float experience = 12.5f;
+    public float bonus = 12.5f;
     private GameObject gameCtrl;
     private GameController gameCtrlScript;
 
@@ -25,10 +25,12 @@ public class EnemyScript : MonoBehaviour {
     public Rigidbody2D healthPotionRB;
     public Rigidbody2D manaPotionRB;
     public Rigidbody2D magnetRB;
+    public Rigidbody2D shieldRB;
 
     private DropOut healthPotion;
     private DropOut manaPotion;
     private DropOut magnet;
+    private DropOut shield;
 
 
     public int coinCount = 3;
@@ -43,12 +45,16 @@ public class EnemyScript : MonoBehaviour {
         manaPotion.percentage = 5;
         manaPotion.rigidbody = manaPotionRB;
 
-        magnet.percentage = 25;
+        magnet.percentage = 65;
         magnet.rigidbody = magnetRB;
+
+        shield.percentage = 65;
+        shield.rigidbody = shieldRB;
 
         dropOuts.Add(healthPotion);
         dropOuts.Add(manaPotion);
         dropOuts.Add(magnet);
+        dropOuts.Add(shield);
 
 
         gameCtrl = GameObject.Find("GameController");
@@ -71,9 +77,10 @@ public class EnemyScript : MonoBehaviour {
                 InstantiateCoins(coinCount);
                 chance = Random.Range(0,100);
                 index = Random.Range(0, dropOuts.Count);
+                if (index<2||PowerUpActivation.CanDropPowerUp())
                 InstantiateDropOut(chance, dropOuts[index]);
                  Destroy(this.gameObject);
-                gameCtrlScript.score += experience;
+                gameCtrlScript.score += bonus;
             }
         }
     }
