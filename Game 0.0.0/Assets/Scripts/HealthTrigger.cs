@@ -18,6 +18,7 @@ public class HealthTrigger : MonoBehaviour
                 GameObject.Find("Player").GetComponent<PlayerGetsHit>().TakeDamage(HealthBarScript.health);
                 HealthBarScript.health = 0;
             }
+
             else
             {
                 if (PowerUpActivation.powerupEnablers[1])
@@ -34,7 +35,6 @@ public class HealthTrigger : MonoBehaviour
                         if (position == new Vector2(2.6f, -10))
                         {
                             PowerUpActivation.orderedBars[0] = false;
-                            Debug.Log(position==new Vector2(2.6f, -10));
                         }
                         else if (position == new Vector2(-2.85f, -10))
                         {

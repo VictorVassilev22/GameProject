@@ -16,8 +16,6 @@ public class PowerUpActivation : MonoBehaviour {
     public GameObject timeBar3;
     public float duration3 = 10f;
 
-    private int counter;
-
     public static GameObject[] timers= new GameObject[4];
     public static GameObject[] instances = new GameObject[4];
     private float[] durations = new float[4];
@@ -127,6 +125,7 @@ public class PowerUpActivation : MonoBehaviour {
         }
         return can;
     }
+
     IEnumerator TimerQueing(int place, int index,float duration)
     {
         yield return new WaitForSeconds(duration);

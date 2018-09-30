@@ -51,6 +51,7 @@ public class HealthBarScript : MonoBehaviour {
         {
             healthBar.fillAmount = health / maxHealth;
             shieldBar.fillAmount = 0;
+            shieldPoints = 0;
             PowerUpActivation.powerupEnablers[1] = false;
             Destroy(PowerUpActivation.instances[1]);
             shieldText.SetActive(false);
