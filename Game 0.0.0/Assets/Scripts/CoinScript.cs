@@ -11,6 +11,7 @@ public class CoinScript : MonoBehaviour {
     Vector2 playerDirection;
     float timeStamp;
     bool isInFieldRange=false;
+    bool coinInBouns = false;
 
     private void Start()
     {
@@ -26,9 +27,9 @@ public class CoinScript : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.name.Equals("MagnetField") && PowerUpActivation.powerupEnablers[0])
+        if (col.gameObject.name == "MagnetField"&& PowerUpActivation.powerupEnablers[0])
         {
             isInFieldRange = true;
             timeStamp = Time.time;
@@ -41,6 +42,6 @@ public class CoinScript : MonoBehaviour {
         {
             Destroy(this.gameObject);
             coinCount++;
-        }
+        }     
     }
 }
