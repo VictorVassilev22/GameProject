@@ -14,7 +14,13 @@ public class HealthBarScript : MonoBehaviour {
     public static float health=100f;
     public static bool canTakeDamage = true;
 
-	void Start () {
+    private GameObject player;
+    public GameObject disappearingAnimation;
+
+    public static bool canBreakShield = false;
+
+    void Start () {
+        player = GameObject.Find("Player");
         healthBar = GetComponent<Image> ();
         shieldText.SetActive(false);
         health = maxHealth;
@@ -34,6 +40,7 @@ public class HealthBarScript : MonoBehaviour {
         if (health > maxHealth) health = maxHealth;
         if (PowerUpActivation.powerupEnablers[1]&&shieldPoints>0)
         {
+            canBreakShield = true;
             shieldText.SetActive(true);
             shieldText.GetComponent<TextMesh>().text = "+ " + shieldPoints.ToString();
             if (shieldPoints + health >= maxHealth)
@@ -55,6 +62,13 @@ public class HealthBarScript : MonoBehaviour {
             PowerUpActivation.powerupEnablers[1] = false;
             Destroy(PowerUpActivation.instances[1]);
             shieldText.SetActive(false);
+
+            if (canBreakShield)
+            {
+                GameController.ShowPowerUpAnimation(disappearingAnimation, player.transform);
+                PowerUpActivation.FreeCooldownBarPositions(PowerUpActivation.instances[1]);
+                canBreakShield = false;
+            }
         }
 	}
 }

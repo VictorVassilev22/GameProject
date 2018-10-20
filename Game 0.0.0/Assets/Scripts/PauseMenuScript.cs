@@ -21,6 +21,8 @@ public class PauseMenuScript : MonoBehaviour {
     }
   public void RestartGame()
     {
+        HealthBarScript.shieldPoints = 0;
+        HealthBarScript.canBreakShield = false;
         GameController.gameRunning = true;
         ctrlScript.canSpawn = true;
         CoinScript.coinCount = 0;
@@ -29,6 +31,7 @@ public class PauseMenuScript : MonoBehaviour {
         rollScr.speed = 0.5f;
         rollScr.canAdd = true;
         Time.timeScale = 1f;
+        PowerUpActivation.NullOrderedBarsList();
         ctrlScript.resetMoveSpeed();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

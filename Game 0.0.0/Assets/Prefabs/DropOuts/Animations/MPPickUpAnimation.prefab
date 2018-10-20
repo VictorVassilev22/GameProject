@@ -73,6 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 1
   hasTime: 1
+  destroyOnPlayerTrigger: 0
 --- !u!212 &212148940335386084
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -105,8 +106,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1526137815
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300022, guid: f2fea210776f8a645bd0a4620241955a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

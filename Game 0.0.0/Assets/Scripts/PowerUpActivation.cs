@@ -18,14 +18,20 @@ public class PowerUpActivation : MonoBehaviour {
 
     public static GameObject[] timers= new GameObject[4];
     public static GameObject[] instances = new GameObject[4];
+    public static Vector2[] positions = new Vector2[4]{ new Vector2(2.6f, -10), new Vector2(-2.85f, -10),
+        new Vector2(2.6f, -9.2f), new Vector2(-2.85f, -9.2f) };
     private float[] durations = new float[4];
     private float[] timeLefts = new float[4];
     private Image[] fillBars = new Image[4];
 
     public static List<bool> orderedBars = new List<bool> {false,false,false,false };
 
+    private GameObject player;
+    public GameObject disappearingAnimation;
+
     private void Start()
     {
+        player = GameObject.Find("Player");
         timers[0]=timeBar0;
         durations[0] = duration0;
         timeLefts[0] = 0;
@@ -69,6 +75,12 @@ public class PowerUpActivation : MonoBehaviour {
                 else
                 {
                     powerupEnablers[i] = false;
+                    if (HealthBarScript.canBreakShield&&i==1)
+                    {
+                        GameController.ShowPowerUpAnimation(disappearingAnimation, player.transform);
+                        HealthBarScript.canBreakShield = false;
+                    }
+                    FreeCooldownBarPositions(instances[i]);
                     Destroy(instances[i]);
                 }
             }
@@ -87,49 +99,37 @@ public class PowerUpActivation : MonoBehaviour {
     Vector2 CalculateTimerPosition(int index)
     {
         Vector2 position = new Vector2();
-
-            if (!orderedBars[0]) {
-                position = new Vector2(2.6f, -10);
-                orderedBars[0] = true;
-            StartCoroutine(TimerQueing(0,index,durations[index]));
+        for (int i = 0; i < 4; i++)
+        {
+            if (!orderedBars[i])
+            {
+                position = positions[i];
+                orderedBars[i] = true;
+                break;
             }
-            else if (!orderedBars[1])
-            {
-                position = new Vector2(-2.85f, -10);
-                orderedBars[1] = true;
-            StartCoroutine(TimerQueing(1,index, durations[index]));
         }
-            else if (!orderedBars[2])
-            {
-                position = new Vector2(2.6f, -9.2f);
-                orderedBars[2] = true;
-            StartCoroutine(TimerQueing(2,index, durations[index]));
-        }
-            else if (!orderedBars[3])
-            {
-                position = new Vector2(-2.85f, -9.2f);
-                orderedBars[3] = true;
-            StartCoroutine(TimerQueing(3,index, durations[index]));
-        }
-                
+           
         return position;
     }
 
-    public static bool CanDropPowerUp()
+    public static void FreeCooldownBarPositions(GameObject instance)
     {
-        bool can = false;
-        for (int i = 0; i < orderedBars.Count; i++)
+
+        Vector2 position = instance.transform.position;
+        for (int i = 0; i < 4; i++)
         {
-            if (!orderedBars[i])
-                can = true;
+            if (position == positions[i])
+            {
+                orderedBars[i] = false;
+            }
         }
-        return can;
     }
 
-    IEnumerator TimerQueing(int place, int index,float duration)
+    public static void NullOrderedBarsList()
     {
-        yield return new WaitForSeconds(duration);
-        if (!powerupEnablers[index]) orderedBars[place] = false;
-        else StartCoroutine(TimerQueing(place, index, 2f));
+        for (int i = 0; i < 4; i++)
+        {
+           orderedBars[i] = false;
+        }
     }
 }

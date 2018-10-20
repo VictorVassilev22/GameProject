@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 0
   hasTime: 0
+  destroyOnPlayerTrigger: 0
 --- !u!114 &114282048227568076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -148,6 +149,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 1
+  appearingAnimation: {fileID: 1351704927133022, guid: 34228767808ab0348bb362f19d8e3fe2,
+    type: 2}
+  barrier: {fileID: 1775877453642964, guid: 5dd5b5c7876547543a69537a42ae90fb, type: 2}
 --- !u!212 &212900911584425920
 SpriteRenderer:
   m_ObjectHideFlags: 1

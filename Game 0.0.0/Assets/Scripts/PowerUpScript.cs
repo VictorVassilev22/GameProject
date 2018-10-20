@@ -9,16 +9,45 @@ public class PowerUpScript : MonoBehaviour
 
     private PowerUpActivation activation;
     public int index;
+    private float shieldPoints;
+    private float shieldGain;
+    private float maxHealth;
+
+    private GameObject player;
+    public GameObject appearingAnimation;
+
+    public GameObject barrier;
+
     private void Awake()
     {
+        player = GameObject.Find("Player");
         activation = GameObject.Find("GameController").GetComponent<PowerUpActivation>();
+
+        shieldPoints = HealthBarScript.shieldPoints;
+        shieldGain = HealthBarScript.shieldGain;
+        maxHealth = HealthBarScript.maxHealth;
+  
+
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.name.Equals("Player"))
         {
-            if (index == 1&&HealthBarScript.shieldPoints<=HealthBarScript.maxHealth)
+            if (index == 1 && shieldPoints <= maxHealth)
+            {
+                if (shieldPoints + shieldGain > maxHealth)
+                {
+                    HealthBarScript.shieldPoints = HealthBarScript.maxHealth;
+                }else
                 HealthBarScript.shieldPoints += HealthBarScript.shieldGain;
+            }
+
+            if (index == 1)
+            {
+                GameController.ShowPowerUpAnimation(appearingAnimation, player.transform);
+                if (!PowerUpActivation.powerupEnablers[1])
+                    Instantiate(barrier, new Vector2(player.transform.position.x, player.transform.position.y-0.6f), Quaternion.identity, player.transform);
+            }
 
             activation.Activate(index);
             Destroy(this.gameObject);

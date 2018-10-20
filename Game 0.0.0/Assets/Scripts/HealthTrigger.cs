@@ -7,9 +7,9 @@ public class HealthTrigger : MonoBehaviour
 {
     public bool canTrigger = true;
     public float damage = 6f;
+    private EnemyScript enemyScr;
 
-
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.name == "Player" && canTrigger && HealthBarScript.canTakeDamage)
         {
@@ -30,24 +30,7 @@ public class HealthTrigger : MonoBehaviour
                         HealthBarScript.health -= damage - HealthBarScript.shieldPoints;
                         GameObject.Find("Player").GetComponent<PlayerGetsHit>().TakeDamage(damage-HealthBarScript.shieldPoints);
                         HealthBarScript.shieldPoints = 0;
-                        Vector2 position = PowerUpActivation.timers[1].transform.position;
-                        PowerUpActivation.orderedBars[1] = false;
-                        if (position == new Vector2(2.6f, -10))
-                        {
-                            PowerUpActivation.orderedBars[0] = false;
-                        }
-                        else if (position == new Vector2(-2.85f, -10))
-                        {
-                            PowerUpActivation.orderedBars[1] = false;
-                        }
-                        else if (position == new Vector2(2.6f, -9.2f))
-                        {
-                            PowerUpActivation.orderedBars[2] = false;
-                        }
-                        else if (position == new Vector2(-2.85f, -9.2f))
-                        {
-                            PowerUpActivation.orderedBars[3] = false;
-                        }
+                        PowerUpActivation.FreeCooldownBarPositions(PowerUpActivation.instances[1]);
                     }
                 }
                 else
@@ -56,13 +39,14 @@ public class HealthTrigger : MonoBehaviour
                     GameObject.Find("Player").GetComponent<PlayerGetsHit>().TakeDamage(damage);
                 }
             }
-            canTrigger = false;
+             canTrigger = false;
+            if (this.gameObject.name == "Bomb" || this.gameObject.name == "Bomb(Clone)") Destroy(this.gameObject);
         }
     }
 
     private void Update()
     {
-        if (this.GetComponentInParent<Transform>().position.y <= -8f || 
+        if (this.GetComponentInParent<Transform>().position.y <= -8f  || 
             !GameController.gameRunning) canTrigger = false;
     }
 }

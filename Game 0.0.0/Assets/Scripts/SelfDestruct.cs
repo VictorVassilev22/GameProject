@@ -5,6 +5,7 @@ using UnityEngine;
 public class SelfDestruct : MonoBehaviour {
     public float time = 0f;
     public bool hasTime;
+    public bool destroyOnPlayerTrigger;
     // Use this for initialization
 
     void Start () {
@@ -20,6 +21,12 @@ public class SelfDestruct : MonoBehaviour {
                 Destroy(this.gameObject);
             }
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (destroyOnPlayerTrigger)
+            Destroy(this.gameObject);
     }
 }
 

@@ -71,19 +71,26 @@ public class EnemyScript : MonoBehaviour {
             MissleScript missleScript = missle.GetComponent<MissleScript>();
             this.health -= missleScript.attack;
             Destroy(col.gameObject);
-
-            if (health <= 0.0f)
-            {
-                InstantiateCoins(coinCount);
-                chance = Random.Range(0,100);
-                index = Random.Range(0, dropOuts.Count);
-                if (index<2||PowerUpActivation.CanDropPowerUp())
-                InstantiateDropOut(chance, dropOuts[index]);
-                 Destroy(this.gameObject);
-                gameCtrlScript.score += bonus;
-            }
+        }
+        else if (col.gameObject.name == "Bomb"|| col.gameObject.name == "Bomb(Clone)")
+        {
+            health -= 15;
         }
     }
+
+    private void Update()
+    {
+        if (health <= 0.0f)
+        {
+            InstantiateCoins(coinCount);
+            chance = Random.Range(0, 100);
+            index = Random.Range(0, dropOuts.Count);
+            InstantiateDropOut(chance, dropOuts[index]);
+            Destroy(this.gameObject);
+            gameCtrlScript.score += bonus;
+        }
+    }
+
 
     void InstantiateDropOut(float chance, DropOut dropOut)
     {
@@ -91,6 +98,7 @@ public class EnemyScript : MonoBehaviour {
         {
             Rigidbody2D dropOutInstance;
             dropOutInstance = Instantiate(dropOut.rigidbody, this.transform.position, this.transform.rotation);
+            //if () ;
             dropOutInstance.AddForce(new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)) * Random.Range(-150, 150));
         }
     }

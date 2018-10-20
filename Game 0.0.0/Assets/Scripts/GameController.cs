@@ -100,6 +100,10 @@ public class GameController : MonoBehaviour {
         // this commented code, once uncommented spawns up to 5 enemies a row!}
         StartCoroutine(StartCooldown());
     }
+    public static void ShowPowerUpAnimation(GameObject animation, Transform transform)
+    {
+        var anim = Instantiate(animation, (Vector2)(transform.position), Quaternion.identity, transform);
+    }
 
     public static void ShowTextEffect(float amount, GameObject textEffect, Transform transform)
     {
@@ -117,6 +121,7 @@ public class GameController : MonoBehaviour {
         shoot.canShoot = false;
         rollScr.canAdd = false;
         pmScr.pause.enabled = false;
+        PowerUpActivation.NullOrderedBarsList();
         StartCoroutine(GameEndWait());
     }
 
