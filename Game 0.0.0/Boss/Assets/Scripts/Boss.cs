@@ -1,69 +1,2 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Boss : MonoBehaviour {
-    
-    public List<Transform> spots;
-    public float speed;
-    public Transform[] holes;
-    public GameObject projectile;
-    public Rigidbody2D rb;
-
-	
-	void Start () {
-        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Spot");
-        
-        foreach (GameObject spot in gameObjects) 
-        {
-            spots.Add(spot.transform);
-            if (System.Math.Abs(transform.position.magnitude) < 0.1)
-                throw new System.Exception("Da pripadash");
-        }
-        StartCoroutine ("boss");
-        //gggg
-		
-	}
-
-
-    void Update()
-    {
-        StartCoroutine("boss");
-    }
-    IEnumerator boss()
-    {
-
-        //First attack
-        /*while (transform.position.x!=spots[0].position.x)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(spots[0].position.x, transform.position.y),speed);
-            yield return null;
-        }
-        transform.localScale = new Vector2(-1,1);
-
-        yield return new WaitForSeconds(1f);
-
-        int i = 0;
-        while (i<6){
-            GameObject bullet =(GameObject)Instantiate(projectile, holes[c].position,Quaternion.identity);
-            bullet.GetComponent<Rigidbody2D>().velocity = Vector2.left * 5;
-            i++;
-            yield return new WaitForSeconds(.7f);
-        }
-        yield return null;*/
-        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Spot");
-        spots.Clear();
-        foreach (GameObject spot in gameObjects)
-        {
-            spots.Add(spot.transform);
-        }
-        int spotToGo = 0; //random value
-        speed = 0.1f;
-        Vector3 directionToSpot = (spots[spotToGo].position - transform.position);
-        transform.position += directionToSpot.normalized * this.speed;
-        //rb.velocity =new Vector2(directionToSpot.x, directionToSpot.y).normalized * this.speed;
-
-        yield return null;
-	}
-     
-}
+﻿using System.Collections;using System.Collections.Generic;using UnityEngine;public class Boss : MonoBehaviour {    private const float FLOAT_COMPARASION_EPSILON = 0.1f;    public List<Vector3> spotPositions;    public float speed;    public GameObject projectile;    public Rigidbody2D rb;    private Vector3 originalPosition;    private Vector3 currentSpotTargetPosition;    private bool shouldReturn = false;    private bool shouldGoToSpot = false;	void Start ()    {        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Spot");        foreach (GameObject spot in gameObjects)        {            spotPositions.Add(spot.transform.position);        }        this.originalPosition = transform.position;			}    void Update()    {        if (this.shouldReturn)            ReturnToOrigin();        else if (this.shouldGoToSpot)            GoToSpot();        else
+            StartCoroutine(StartBuffRoutine());    }    private IEnumerator StartBuffRoutine()    {        //When called makes the boss go to spot        int spotIndex = Random.Range(0, this.spotPositions.Count - 1); // Choose random spot        this.currentSpotTargetPosition = this.spotPositions[spotIndex];        this.shouldGoToSpot = true;        yield return new WaitForSecondsRealtime(10); // Boss goes for a buff once every 10 seconds    }    private void MoveToLocation(Vector3 location)    {        //Moves the boss object towards a location        Vector3 direction = (location - this.transform.position).normalized;        this.transform.position += direction * speed; //Some time measurement needs to be added (*deltaTime)    }    private void GoToSpot()    {        //Moves the boss towards a spot        MoveToLocation(this.currentSpotTargetPosition);        shouldReturn = (this.currentSpotTargetPosition - transform.position).magnitude < FLOAT_COMPARASION_EPSILON;        shouldGoToSpot = !shouldReturn;    }    private void ReturnToOrigin()    {        //Moves the boss towards its original position        MoveToLocation(this.originalPosition);        shouldReturn = (this.originalPosition - transform.position).magnitude > FLOAT_COMPARASION_EPSILON;    }}
