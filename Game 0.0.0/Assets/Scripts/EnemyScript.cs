@@ -72,10 +72,11 @@ public class EnemyScript : MonoBehaviour {
             this.health -= missleScript.attack;
             Destroy(col.gameObject);
         }
-        else if (col.gameObject.name == "Bomb"|| col.gameObject.name == "Bomb(Clone)")
-        {
-            health -= 15;
-        }
+
+        //else if (col.gameObject.name == "Bomb"|| col.gameObject.name == "Bomb(Clone)")
+        //{
+        //    health -= 15;
+        //}
     }
 
     private void Update()

@@ -23,7 +23,7 @@ TagManager:
   - Missles
   - Potions
   - Invisible Fields
-  - 
+  - Mounts
   - 
   - 
   - 
@@ -45,6 +45,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 994575931
+    locked: 0
+  - name: Mounts
+    uniqueID: 2352007465
     locked: 0
   - name: Enemies
     uniqueID: 38763145
