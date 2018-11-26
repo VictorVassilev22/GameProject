@@ -26,11 +26,13 @@ public class EnemyScript : MonoBehaviour {
     public Rigidbody2D manaPotionRB;
     public Rigidbody2D magnetRB;
     public Rigidbody2D shieldRB;
+    public Rigidbody2D bombRB;
 
     private DropOut healthPotion;
     private DropOut manaPotion;
     private DropOut magnet;
     private DropOut shield;
+    private DropOut bomb;
 
 
     public int coinCount = 3;
@@ -39,10 +41,10 @@ public class EnemyScript : MonoBehaviour {
 
     private void Start()
     {
-        healthPotion.percentage = 5;
+        healthPotion.percentage = 20;
         healthPotion.rigidbody = healthPotionRB;
 
-        manaPotion.percentage = 5;
+        manaPotion.percentage = 20;
         manaPotion.rigidbody = manaPotionRB;
 
         magnet.percentage = 65;
@@ -51,10 +53,14 @@ public class EnemyScript : MonoBehaviour {
         shield.percentage = 65;
         shield.rigidbody = shieldRB;
 
+        bomb.percentage = 85;
+        bomb.rigidbody = bombRB;
+
         dropOuts.Add(healthPotion);
         dropOuts.Add(manaPotion);
         dropOuts.Add(magnet);
         dropOuts.Add(shield);
+        dropOuts.Add(bomb);
 
 
         gameCtrl = GameObject.Find("GameController");
@@ -70,13 +76,7 @@ public class EnemyScript : MonoBehaviour {
             GameObject missle = GameObject.Find("missle(Clone)");
             MissleScript missleScript = missle.GetComponent<MissleScript>();
             this.health -= missleScript.attack;
-            Destroy(col.gameObject);
         }
-
-        //else if (col.gameObject.name == "Bomb"|| col.gameObject.name == "Bomb(Clone)")
-        //{
-        //    health -= 15;
-        //}
     }
 
     private void Update()

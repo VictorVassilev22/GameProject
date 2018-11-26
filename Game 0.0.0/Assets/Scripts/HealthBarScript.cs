@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HealthBarScript : MonoBehaviour {
 
     Image healthBar;
-    public Image shieldBar;
+    Image shieldBar;
     public GameObject shieldText;
     public static float shieldPoints = 0f;
     public static float shieldGain = 10f;
@@ -22,6 +22,7 @@ public class HealthBarScript : MonoBehaviour {
     void Start () {
         player = GameObject.Find("Player");
         healthBar = GetComponent<Image> ();
+        shieldBar = GameObject.Find("ShieldBar").GetComponent<Image>();
         shieldText.SetActive(false);
         health = maxHealth;
 		
@@ -37,7 +38,10 @@ public class HealthBarScript : MonoBehaviour {
         {
             canTakeDamage = true;
         }
-        if (health > maxHealth) health = maxHealth;
+
+        if (health > maxHealth)
+            health = maxHealth;
+
         if (PowerUpActivation.powerupEnablers[1]&&shieldPoints>0)
         {
             canBreakShield = true;

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Boundary
   - Enemy
+  - EnemyHazard
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Potions
   - Invisible Fields
   - Mounts
-  - 
+  - EnemyHazard
   - 
   - 
   - 

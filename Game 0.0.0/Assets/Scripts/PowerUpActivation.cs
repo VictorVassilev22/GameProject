@@ -71,10 +71,13 @@ public class PowerUpActivation : MonoBehaviour {
                     powerupEnablers[i] = true;
                     timeLefts[i] -= Time.deltaTime;
                     fillBars[i].fillAmount = timeLefts[i] / durations[i];
+
+                    CheckForFreeSpaces(i);
                 }
                 else
                 {
                     powerupEnablers[i] = false;
+
                     if (HealthBarScript.canBreakShield&&i==1)
                     {
                         GameController.ShowPowerUpAnimation(disappearingAnimation, player.transform);
@@ -87,16 +90,45 @@ public class PowerUpActivation : MonoBehaviour {
         }
     }
   
+    void CheckForFreeSpaces(int index)
+    {
+        int biggestTakenPlace = -1;
+        bool needsToReplace = false;
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (orderedBars[i])
+                biggestTakenPlace = i;
+        }
+
+        if (biggestTakenPlace >= 0)
+        {
+            for (int i = biggestTakenPlace; i >= 0; i--)
+            {
+                if (!orderedBars[i])
+                    needsToReplace = true;
+            }
+        }
+
+        if (needsToReplace)
+        {
+            Destroy(instances[index]);
+            FreeCooldownBarPositions(instances[index]);
+            ShowTimeBar(index);
+        }
+    }
+
      void ShowTimeBar(int index)
     {
         
-       Vector2 position = CalculateTimerPosition(index);
+       Vector2 position = CalculateTimerPosition();
        
        instances[index] = Instantiate(timers[index], position, Quaternion.identity);
         fillBars[index] = instances[index].gameObject.transform.GetChild(0).GetChild(0).GetComponent<Image>();
     }
 
-    Vector2 CalculateTimerPosition(int index)
+
+    Vector2 CalculateTimerPosition()
     {
         Vector2 position = new Vector2();
         for (int i = 0; i < 4; i++)

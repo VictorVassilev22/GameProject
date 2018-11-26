@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 95753155945346622}
   m_Layer: 16
   m_Name: dog_running_0
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114871433549704064}
   - component: {fileID: 50533886920710678}
   - component: {fileID: 60509538853067746}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DogRider
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 95729597522782586}
   m_Layer: 9
   m_Name: nodog_enemy_riding_0
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -242,6 +242,7 @@ MonoBehaviour:
     type: 2}
   magnetRB: {fileID: 50717225971358342, guid: 3aab24cc7d5f909488c004fffa8cbf57, type: 2}
   shieldRB: {fileID: 50065625297278644, guid: e0d05fb3e73a0ae4390989d6a5c39830, type: 2}
+  bombRB: {fileID: 50448294986937526, guid: d7e5e0fd832a9f845bcc8fe59975dca6, type: 2}
   coinCount: 3
 --- !u!212 &212294202868834140
 SpriteRenderer:

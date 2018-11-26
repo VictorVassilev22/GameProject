@@ -13,8 +13,11 @@ public class MissleScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag=="Enemy")
-        Instantiate(explosion, (Vector2)this.gameObject.transform.position + missleExplosionOffset * transform.localScale.y, this.gameObject.transform.rotation);
+        if (col.gameObject.tag == "Enemy")
+        {
+            Instantiate(explosion, (Vector2)this.gameObject.transform.position + missleExplosionOffset * transform.localScale.y, this.gameObject.transform.rotation);
+            Destroy(this.gameObject);
+        }
     }
 
 }

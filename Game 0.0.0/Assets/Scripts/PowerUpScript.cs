@@ -5,7 +5,7 @@ using UnityEngine;
 public class PowerUpScript : MonoBehaviour
 {
     //shield power-up with index 1 is linked with health bar script and health trigger script
-    //magnet power-up with index 0 is liked with coin script
+    //magnet power-up with index 0 is linked with coin script
 
     private PowerUpActivation activation;
     public int index;
@@ -26,9 +26,9 @@ public class PowerUpScript : MonoBehaviour
         shieldPoints = HealthBarScript.shieldPoints;
         shieldGain = HealthBarScript.shieldGain;
         maxHealth = HealthBarScript.maxHealth;
-  
-
     }
+
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.name.Equals("Player"))
@@ -53,5 +53,4 @@ public class PowerUpScript : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
 }

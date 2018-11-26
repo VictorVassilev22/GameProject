@@ -10,14 +10,19 @@ public class PlayerGetsHit : MonoBehaviour {
         sprRend = GameObject.Find("Player").GetComponent<SpriteRenderer>();
     }
 
-    public void TakeDamage(float damage)
-     {
-        StartCoroutine(ChangeColorTime(damage));
+    public void TakeDamage(float damage, string tag)
+     {  
+        StartCoroutine(ChangeColorTime(damage, tag));
+
      }
 
-    IEnumerator ChangeColorTime(float damage)
+    IEnumerator ChangeColorTime(float damage, string tag)
     {
-        yield return new WaitForSeconds(0.25f);
+        if (tag == "Enemy")
+        {
+            yield return new WaitForSeconds(0.25f);
+        }
+
         if (damageText)
             GameController.ShowTextEffect(-damage, damageText, this.transform);
         sprRend.color = Color.red;

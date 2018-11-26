@@ -46,7 +46,6 @@ public class GameController : MonoBehaviour {
         pmScr = GameObject.Find("PauseMenu").GetComponent<PauseMenuScript>();
         rollScr = GameObject.Find("Street").GetComponent<RollingScript>();
         ShowBarTexts();
-
     }
 
     void Update()
@@ -77,6 +76,7 @@ public class GameController : MonoBehaviour {
 
         if (HealthBarScript.health <= 0)
         {
+            HealthBarScript.shieldPoints = 0;
             EndGame();
         }
     }
@@ -102,7 +102,7 @@ public class GameController : MonoBehaviour {
     }
     public static void ShowPowerUpAnimation(GameObject animation, Transform transform)
     {
-        var anim = Instantiate(animation, (Vector2)(transform.position), Quaternion.identity, transform);
+        var anim = Instantiate(animation, new Vector2(transform.position.x-1f, transform.position.y+0.3f), Quaternion.identity, transform);
     }
 
     public static void ShowTextEffect(float amount, GameObject textEffect, Transform transform)
