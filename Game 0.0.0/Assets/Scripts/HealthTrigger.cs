@@ -22,8 +22,9 @@ public class HealthTrigger : MonoBehaviour
     {
         if (col.gameObject.name == "Player" && canTrigger && HealthBarScript.canTakeDamage)
         {
-            DamagePlayerHandler();
+            PlayerDamageHandler();
         }
+        EnemyDamageHandler(col);
     }
 
     void OnTriggerStay2D(Collider2D col)
@@ -35,22 +36,16 @@ public class HealthTrigger : MonoBehaviour
                 if (canAttackAnimation) this.gameObject.transform.GetChild(1).GetComponent<Animator>().SetTrigger("attack");
                 canAttackAnimation = false;
             }
-            DamagePlayerHandler();
+            PlayerDamageHandler();
         }
-        else if (col.gameObject.tag == "Enemy")
-        {
-            if (this.gameObject.name == "Ex-Bomb(Clone)")
-                col.gameObject.GetComponent<EnemyScript>().health = 0;
-            else
-                col.gameObject.GetComponent<EnemyScript>().health -= damage;
-        }
-        }
+        EnemyDamageHandler(col);
+    }
     
 
     private void Update()
     {
-        if (this.GetComponentInParent<Transform>().position.y <= -8f  || 
-            !GameController.gameRunning) canTrigger = false;
+        if ((this.GetComponentInParent<Transform>().position.y <= -8f  || 
+            !GameController.gameRunning)&&this.gameObject.tag!="EnemyHazard") canTrigger = false;
 
         if (this.gameObject.tag == "Enemy" && Mathf.Abs(this.transform.position.x-player.transform.position.x)<=1.5f
             && Mathf.Abs(this.transform.position.y - player.transform.position.y) <= 3f && canTrigger)
@@ -60,8 +55,29 @@ public class HealthTrigger : MonoBehaviour
             
         }
     }
+    private void EnemyDamageHandler(Collision2D col)
+    {
+        if (col.gameObject.tag == "Enemy")
+        {
+            if (this.gameObject.name == "Ex-Bomb(Clone)")
+                col.gameObject.GetComponent<EnemyScript>().health = 0;
+            else
+                col.gameObject.GetComponent<EnemyScript>().health -= damage;
+        }
+    }
 
-    private void DamagePlayerHandler()
+    private void EnemyDamageHandler(Collider2D col)
+    {
+        if (col.gameObject.tag == "Enemy")
+        {
+            if (this.gameObject.name == "Ex-Bomb(Clone)")
+                col.gameObject.GetComponent<EnemyScript>().health = 0;
+            else
+                col.gameObject.GetComponent<EnemyScript>().health -= damage;
+        }
+    }
+
+    private void PlayerDamageHandler()
     {
         if (HealthBarScript.health + HealthBarScript.shieldPoints < damage)
         {
@@ -77,9 +93,9 @@ public class HealthTrigger : MonoBehaviour
                     HealthBarScript.shieldPoints -= damage;
                 else
                 {
-                    HealthBarScript.shieldPoints = 0;
                     HealthBarScript.health -= damage - HealthBarScript.shieldPoints;
                     player.GetComponent<PlayerGetsHit>().TakeDamage(damage - HealthBarScript.shieldPoints, this.gameObject.tag);
+                    HealthBarScript.shieldPoints = 0;
                     PowerUpActivation.FreeCooldownBarPositions(PowerUpActivation.instances[1]);
                 }
             }

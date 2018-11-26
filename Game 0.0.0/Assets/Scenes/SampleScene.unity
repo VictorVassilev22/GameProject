@@ -1019,7 +1019,7 @@ GameObject:
   - component: {fileID: 786270581}
   - component: {fileID: 786270580}
   - component: {fileID: 786270579}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Boundary
   m_Icon: {fileID: 0}

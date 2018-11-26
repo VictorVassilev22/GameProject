@@ -100,7 +100,7 @@ public class EnemyScript : MonoBehaviour {
             Rigidbody2D dropOutInstance;
             dropOutInstance = Instantiate(dropOut.rigidbody, this.transform.position, this.transform.rotation);
             //if () ;
-            dropOutInstance.AddForce(new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)) * Random.Range(-150, 150));
+            dropOutInstance.AddForce(new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)) * Random.Range(-200, 200));
         }
     }
 

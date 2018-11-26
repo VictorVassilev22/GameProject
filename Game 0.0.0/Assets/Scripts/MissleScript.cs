@@ -11,13 +11,32 @@ public class MissleScript : MonoBehaviour {
         Destroy(this.gameObject, 0.7f);
 	}
 
-    void OnTriggerEnter2D(Collider2D col)
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        EnemyCollisionHandler(collision);
+    }
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        EnemyCollisionHandler(col);
+    }
+
+    void EnemyCollisionHandler(Collider2D col)
     {
         if (col.gameObject.tag == "Enemy")
         {
-            Instantiate(explosion, (Vector2)this.gameObject.transform.position + missleExplosionOffset * transform.localScale.y, this.gameObject.transform.rotation);
             Destroy(this.gameObject);
+            Instantiate(explosion, (Vector2)this.gameObject.transform.position + missleExplosionOffset * transform.localScale.y, this.gameObject.transform.rotation);
         }
     }
+
+    void EnemyCollisionHandler(Collision2D col)
+    {
+        if (col.gameObject.tag == "Enemy")
+        {
+            Destroy(this.gameObject);
+            Instantiate(explosion, (Vector2)this.gameObject.transform.position + (missleExplosionOffset-new Vector2(0f,0.3f)) * transform.localScale.y, this.gameObject.transform.rotation);
+        }
+    }
+
 
 }
