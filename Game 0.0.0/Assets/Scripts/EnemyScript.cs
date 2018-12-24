@@ -71,9 +71,9 @@ public class EnemyScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col) // -the collision function and parameter must be for 2D
     {
-        if (col.gameObject.name == "missle(Clone)") // check if the object colliding is the missle
+        if (col.gameObject.tag == "Missles") // check if the object colliding is the missle
         {
-            GameObject missle = GameObject.Find("missle(Clone)");
+            GameObject missle = col.gameObject;
             MissleScript missleScript = missle.GetComponent<MissleScript>();
             this.health -= missleScript.attack;
         }

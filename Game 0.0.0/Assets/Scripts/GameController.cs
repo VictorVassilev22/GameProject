@@ -56,8 +56,8 @@ public class GameController : MonoBehaviour {
         if(canScore)
         score += 0.1f;
 
-        if(cooldown>1.0f)
-       if(canShortCooldown) cooldown-=0.0004f;
+        //if(cooldown>1.0f)
+       //if(canShortCooldown) cooldown-=0.0004f;
 
         int intScore = (int)score;
         showScore.text = (intScore).ToString();
@@ -71,7 +71,7 @@ public class GameController : MonoBehaviour {
 
         coinCounter.text = CoinScript.coinCount.ToString();
 
-        if (canSpeed)moveSpeed += 0.00045f;
+       // if (canSpeed)moveSpeed += 0.00045f;
         enemySpd = moveSpeed;
 
         if (HealthBarScript.health <= 0)
@@ -87,18 +87,19 @@ public class GameController : MonoBehaviour {
     }
     void SpawnWaves()
     {
-        //for (int i = 0; i <=5; i++)
-        //{
+        for (int i = 0; i <= 5; i++)
+        {
             Vector2 spawnPosition = new Vector2(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y);
             Quaternion spawnRotation = Quaternion.identity;
 
-            //if (lastPos.x - spawnPosition.x >= 2.7f || i == 0)
-            //{
+            if (lastPos.x - spawnPosition.x >= 2.7f || i == 0)
+            {
                 Instantiate(hazard, spawnPosition, spawnRotation);
-              //  lastPos = spawnPosition;
-            //}
-        // this commented code, once uncommented spawns up to 5 enemies a row!}
-        StartCoroutine(StartCooldown());
+                lastPos = spawnPosition;
+            }
+            // this commented code, once uncommented spawns up to 5 enemies a row!}
+            StartCoroutine(StartCooldown());
+        }
     }
     public static void ShowPowerUpAnimation(GameObject animation, Transform transform)
     {
@@ -118,7 +119,7 @@ public class GameController : MonoBehaviour {
     {
         canScore = false;
         canSpawn = false;
-        shoot.canShoot = false;
+        //shoot.canShoot = false;
         rollScr.canAdd = false;
         pmScr.pause.enabled = false;
         PowerUpActivation.NullOrderedBarsList();

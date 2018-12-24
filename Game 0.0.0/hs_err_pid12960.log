@@ -1,0 +1,190 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 67108864 bytes for Failed to commit area from 0x0000000080000000 to 0x0000000084000000 of length 67108864.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (t:/workspace/open/src/hotspot/os/windows/os_windows.cpp:3221), pid=12960, tid=632
+#
+# JRE version:  (10.0.1+10) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (10.0.1+10, mixed mode, aot, tiered, compressed oops, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Xmx2048M -Dcom.android.sdkmanager.toolsdir=C:\Users\Len_Z570\AppData\Local\Android\sdk\tools -Dfile.encoding=UTF8 D:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Tools\sdktools.jar -
+
+Host: Intel(R) Core(TM) i5-2430M CPU @ 2.40GHz, 4 cores, 3G,  Windows 10 , 64 bit Build 17134 (10.0.17134.1)
+Time: Mon Dec 24 04:31:37 2018 Oeieaiaey - noaiaa?oii a?aia elapsed time: 0 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000020cae89b000):  JavaThread "Unknown thread" [_thread_in_vm, id=632, stack(0x000000d64aa00000,0x000000d64ab00000)]
+
+Stack: [0x000000d64aa00000,0x000000d64ab00000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x5a0369]
+V  [jvm.dll+0x6bcf81]
+V  [jvm.dll+0x6be176]
+V  [jvm.dll+0x6be803]
+V  [jvm.dll+0x234998]
+V  [jvm.dll+0x59dc74]
+V  [jvm.dll+0x592ab5]
+V  [jvm.dll+0x2f625b]
+V  [jvm.dll+0x2f61c5]
+V  [jvm.dll+0x2f60a2]
+V  [jvm.dll+0x2f8286]
+V  [jvm.dll+0x3440d3]
+V  [jvm.dll+0x3447e6]
+V  [jvm.dll+0x3441d3]
+V  [jvm.dll+0x2c43b8]
+V  [jvm.dll+0x2c5501]
+V  [jvm.dll+0x69d33b]
+V  [jvm.dll+0x69eb5c]
+V  [jvm.dll+0x351849]
+V  [jvm.dll+0x6859c2]
+V  [jvm.dll+0x3ba0a3]
+V  [jvm.dll+0x3bc201]
+C  [java.exe+0x3531]
+C  [java.exe+0xe1af]
+C  [java.exe+0xe356]
+C  [KERNEL32.DLL+0x13034]
+C  [ntdll.dll+0x73691]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x0000020cac382270, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x0000020cae8b5800 GCTaskThread "GC Thread#0" [stack: 0x000000d64ab00000,0x000000d64ac00000] [id=6860]
+  0x0000020cae8b7000 GCTaskThread "GC Thread#1" [stack: 0x000000d64ac00000,0x000000d64ad00000] [id=12852]
+  0x0000020cae8bc000 GCTaskThread "GC Thread#2" [stack: 0x000000d64ad00000,0x000000d64ae00000] [id=11944]
+  0x0000020cae8c4000 GCTaskThread "GC Thread#3" [stack: 0x000000d64ae00000,0x000000d64af00000] [id=14980]
+  0x0000020cae8f0800 ConcurrentGCThread "G1 Main Marker" [stack: 0x000000d64af00000,0x000000d64b000000] [id=6300]
+  0x0000020cae8f3000 ConcurrentGCThread "G1 Conc#0" [stack: 0x000000d64b000000,0x000000d64b100000] [id=12448]
+
+[error occurred during error reporting (printing all threads), id 0xe0000002]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x0000020cae899410] Heap_lock - owner thread: 0x0000020cae89b000
+
+Heap address: 0x0000000080000000, size: 2048 MB, Compressed Oops mode: Non-zero based: 0x0000000080000000
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff65bef0000 - 0x00007ff65bf2e000 	C:\Program Files\Java\jdk-10.0.1\bin\java.exe
+0x00007ffa41550000 - 0x00007ffa41731000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffa23dc0000 - 0x00007ffa23dd4000 	C:\Program Files\AVAST Software\Avast\x64\aswhooka.dll
+0x00007ffa40580000 - 0x00007ffa40632000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffa3e760000 - 0x00007ffa3e9d3000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffa40ba0000 - 0x00007ffa40c41000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffa40e90000 - 0x00007ffa40f2e000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffa40c50000 - 0x00007ffa40cab000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffa40fd0000 - 0x00007ffa410f4000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffa3ea10000 - 0x00007ffa3eba0000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffa3db30000 - 0x00007ffa3db50000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffa3e9e0000 - 0x00007ffa3ea08000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffa3e3d0000 - 0x00007ffa3e562000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffa3db50000 - 0x00007ffa3dbef000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffa3da30000 - 0x00007ffa3db2a000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffa2a430000 - 0x00007ffa2a699000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.17134.471_none_fb3e9aab3068fc16\COMCTL32.dll
+0x00007ffa411d0000 - 0x00007ffa414f2000 	C:\WINDOWS\System32\combase.dll
+0x00007ffa3dc40000 - 0x00007ffa3dcba000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffa3d680000 - 0x00007ffa3d68a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffa406c0000 - 0x00007ffa406ed000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffa3d690000 - 0x00007ffa3d6c0000 	C:\WINDOWS\system32\DriverStore\FileRepository\nvltwu.inf_amd64_0221ce4ec0827f74\nvinitx.dll
+0x00007ffa3eba0000 - 0x00007ffa3ffe0000 	C:\WINDOWS\System32\Shell32.dll
+0x00007ffa3dbf0000 - 0x00007ffa3dc39000 	C:\WINDOWS\System32\cfgmgr32.dll
+0x00007ffa40060000 - 0x00007ffa40109000 	C:\WINDOWS\System32\shcore.dll
+0x00007ffa3dcc0000 - 0x00007ffa3e3cd000 	C:\WINDOWS\System32\windows.storage.dll
+0x00007ffa40b40000 - 0x00007ffa40b91000 	C:\WINDOWS\System32\shlwapi.dll
+0x00007ffa3d880000 - 0x00007ffa3d891000 	C:\WINDOWS\System32\kernel.appcore.dll
+0x00007ffa3d900000 - 0x00007ffa3d91f000 	C:\WINDOWS\System32\profapi.dll
+0x00007ffa3d8b0000 - 0x00007ffa3d8fc000 	C:\WINDOWS\System32\powrprof.dll
+0x00007ffa3d8a0000 - 0x00007ffa3d8aa000 	C:\WINDOWS\System32\FLTLIB.DLL
+0x0000000073920000 - 0x0000000073926000 	C:\Program Files\NVIDIA Corporation\CoProcManager\_etoured.dll
+0x00007ffa30fa0000 - 0x00007ffa30fdb000 	C:\Program Files\NVIDIA Corporation\CoProcManager\nvd3d9wrapx.dll
+0x00007ffa406f0000 - 0x00007ffa40b3b000 	C:\WINDOWS\System32\SETUPAPI.dll
+0x00007ffa30f70000 - 0x00007ffa30f94000 	C:\Program Files\NVIDIA Corporation\CoProcManager\nvdxgiwrapx.dll
+0x00007ffa14800000 - 0x00007ffa148ef000 	C:\Program Files\Java\jdk-10.0.1\bin\msvcr120.dll
+0x00007ffa1f7e0000 - 0x00007ffa1f886000 	C:\Program Files\Java\jdk-10.0.1\bin\msvcp120.dll
+0x00000000714b0000 - 0x0000000071f20000 	C:\Program Files\Java\jdk-10.0.1\bin\server\jvm.dll
+0x00007ffa41500000 - 0x00007ffa41508000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ffa389a0000 - 0x00007ffa389a9000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffa40650000 - 0x00007ffa406bc000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffa3b860000 - 0x00007ffa3b883000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffa3b7e0000 - 0x00007ffa3b80a000 	C:\WINDOWS\SYSTEM32\WINMMBASE.dll
+0x00007ffa381d0000 - 0x00007ffa381df000 	C:\Program Files\Java\jdk-10.0.1\bin\verify.dll
+0x00007ffa395a0000 - 0x00007ffa39769000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffa39570000 - 0x00007ffa39599000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffa249f0000 - 0x00007ffa24a17000 	C:\Program Files\Java\jdk-10.0.1\bin\java.dll
+0x00007ffa295f0000 - 0x00007ffa29606000 	C:\Program Files\Java\jdk-10.0.1\bin\zip.dll
+0x00007ffa37200000 - 0x00007ffa3720a000 	C:\Program Files\Java\jdk-10.0.1\bin\jimage.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\Java\jdk-10.0.1\bin;C:\WINDOWS\SYSTEM32;C:\Program Files\AVAST Software\Avast\x64;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.17134.471_none_fb3e9aab3068fc16;C:\WINDOWS\system32\DriverStore\FileRepository\nvltwu.inf_amd64_0221ce4ec0827f74;C:\Program Files\NVIDIA Corporation\CoProcManager;C:\Program Files\Java\jdk-10.0.1\bin\server
+
+VM Arguments:
+jvm_args: -Xmx2048M -Dcom.android.sdkmanager.toolsdir=C:\Users\Len_Z570\AppData\Local\Android\sdk\tools -Dfile.encoding=UTF8 
+java_command: D:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Tools\sdktools.jar -
+java_class_path (initial): D:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Tools\sdktools.jar
+Launcher Type: SUN_STANDARD
+
+Logging:
+Log output configuration:
+#0: stdout all=warning uptime,level,tags
+#1: stderr all=off uptime,level,tags
+
+Environment Variables:
+PATH=C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseGit\bin;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files\nodejs\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Java\jdk1.8.0_144\bin;;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Users\Len_Z570\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\Len_Z570\AppData\Roaming\npm;
+USERNAME=Len_Z570
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 42 Stepping 7, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10 , 64 bit Build 17134 (10.0.17134.1)
+
+CPU:total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 42 stepping 7, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, aes, clmul, ht, tsc, tscinvbit
+
+Memory: 4k page, physical 4106412k(629828k free), swap 6989996k(8600k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (10.0.1+10) for windows-amd64 JRE (10.0.1+10), built on Mar 27 2018 02:27:48 by "mach5one" with MS VC++ 12.0 (VS2013)
+
+END.
