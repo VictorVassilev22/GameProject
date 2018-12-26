@@ -10,8 +10,8 @@ public class ShootMissle : MonoBehaviour
     public Vector2 velocity; //Скоростта, която е зададена на 14 по оста 'y' от Unity
     public static bool canShoot = true; //Дали може да стреля
     public Vector2 offset = new Vector2(0f, 0.3f); //Разтоянието от което магьосника си прави топката
-    public float cooldown =0.6f; //Cooldown на изстрела
-    public float chargeTime = 0.432f; //Времето за зареждане на изстрела
+    public static float cooldown =0.6f; //Cooldown на изстрела
+    public float chargeTime = 0.6f; //0.432f; //Времето за зареждане на изстрела
     public float manaCost = 5f;
     private Animator animation;
 
@@ -74,7 +74,7 @@ public class ShootMissle : MonoBehaviour
 
     }
 
-    IEnumerator ShootCooldown()
+    public IEnumerator ShootCooldown()
     {
         canShoot = false; //героя вече не може да стреля
         yield return new WaitForSeconds(cooldown); //чакаме даденото време

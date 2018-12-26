@@ -6,13 +6,14 @@ public class MissleScript : MonoBehaviour {
     public float attack = 25.0f;
     public GameObject explosion;
     public Vector2 missleExplosionOffset = new Vector2(0.1f, -0.2f);
+    public float destroyTime;
 
     [SerializeField]
     private bool timeDestroy;
 
     // Use this for initialization
     void Start () {
-        if(timeDestroy) Destroy(this.gameObject, 1.0f);
+        if(timeDestroy) Destroy(this.gameObject, destroyTime);
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)

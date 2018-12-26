@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour {
     public int enemiesPassed = 0;
     public float savedSpeed;
 
-    public static float moveSpeed = 2.0f;
+    public static float moveSpeed = 1.0f;
     public static float enemySpd = moveSpeed;
     private float resetSpd = moveSpeed;
 
@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour {
     private ShootMissle shoot;
     private RollingScript rollScr;
     private PauseMenuScript pmScr;
-
+    private AudioSource music;
     public GameObject reset;
 
     private void Start()
@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour {
         shoot = GameObject.Find("Player").GetComponent<ShootMissle>();
         pmScr = GameObject.Find("PauseMenu").GetComponent<PauseMenuScript>();
         rollScr = GameObject.Find("Street").GetComponent<RollingScript>();
+        music = GameObject.Find("Music").GetComponent<AudioSource>();
         ShowBarTexts();
     }
 
@@ -87,7 +88,7 @@ public class GameController : MonoBehaviour {
     }
     void SpawnWaves()
     {
-        for (int i = 0; i <= 5; i++)
+        for (int i = 0; i <= 20; i++)
         {
             Vector2 spawnPosition = new Vector2(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y);
             Quaternion spawnRotation = Quaternion.identity;
@@ -97,7 +98,7 @@ public class GameController : MonoBehaviour {
                 Instantiate(hazard, spawnPosition, spawnRotation);
                 lastPos = spawnPosition;
             }
-            // this commented code, once uncommented spawns up to 5 enemies a row!}
+            // this commented code, once uncommented spawns up to 5 enemies a row! (now uncommented)
             StartCoroutine(StartCooldown());
         }
     }
@@ -119,7 +120,7 @@ public class GameController : MonoBehaviour {
     {
         canScore = false;
         canSpawn = false;
-        //shoot.canShoot = false;
+        ShootMissle.canShoot = false;
         rollScr.canAdd = false;
         pmScr.pause.enabled = false;
         PowerUpActivation.NullOrderedBarsList();
@@ -139,6 +140,7 @@ public class GameController : MonoBehaviour {
         pmScr.restart.enabled = true;
         pmScr.restart.GetComponent<Image>().enabled = true;
         reset.SetActive(true);
+        music.Stop();
     }
 
     IEnumerator StartCooldown()

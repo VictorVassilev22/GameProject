@@ -2243,7 +2243,7 @@ MonoBehaviour:
   canScore: 1
   canSpeed: 1
   canShortCooldown: 1
-  cooldown: 2
+  cooldown: 3
   score: 0
   highScore: 0
   enemiesPassed: 0
@@ -3078,7 +3078,6 @@ MonoBehaviour:
   missle: {fileID: 1339793607586490, guid: 18fb4ed9b6874544aa8778193c0b5292, type: 2}
   velocity: {x: 0, y: 14}
   offset: {x: 0, y: 0.4}
-  cooldown: 0.6
   chargeTime: 0.432
   manaCost: 3
 --- !u!114 &1594114119
@@ -3304,7 +3303,7 @@ GameObject:
   - component: {fileID: 1645865760}
   - component: {fileID: 1645865761}
   m_Layer: 11
-  m_Name: SpellButtton
+  m_Name: SpellButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

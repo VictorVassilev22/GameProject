@@ -10,6 +10,7 @@ public class PauseMenuScript : MonoBehaviour {
     public Button play;
     public Button restart;
     public Button pause;
+    private LongPressSpell spellButton;
 
     // Use this for initialization
     void Start () {
@@ -18,9 +19,12 @@ public class PauseMenuScript : MonoBehaviour {
         play = GameObject.Find("Play").GetComponent<Button>();
         restart = GameObject.Find("Restart").GetComponent<Button>();
         pause = GameObject.Find("Pause").GetComponent<Button>();
+       spellButton= GameObject.Find("SpellButton").GetComponent<LongPressSpell>();
     }
   public void RestartGame()
     {
+        spellButton.SetEnabled();
+        ShootMissle.canShoot = true;
         HealthBarScript.shieldPoints = 0;
         HealthBarScript.canBreakShield = false;
         GameController.gameRunning = true;

@@ -27,8 +27,7 @@ public class LongPressSpell : Selectable, IPointerDownHandler, IPointerUpHandler
     [SerializeField]
     private Image fillCooldownImage;
 
-    private SpellController spellController;
-    
+    private SpellController spellController; 
    
     private void Start()
     {
@@ -62,6 +61,7 @@ public class LongPressSpell : Selectable, IPointerDownHandler, IPointerUpHandler
             if (time < 0.5 || (count < spellCount && count > 0))
             {
                 animation.Play("fireball");
+                StartCoroutine(ShootCooldown());
                 spellController.castSpell(spellNember, 0);
                 count--;
             }
@@ -95,12 +95,12 @@ public class LongPressSpell : Selectable, IPointerDownHandler, IPointerUpHandler
         {
             time += Time.deltaTime;
 
-            if (time > 0.5f && count == spellCount)
+            if (time > 0.5f && count == spellCount && !longPressActivated)
             {
-                if(!longPressActivated) spellController.castSpell(spellNember, 1);
-                animation.Play("bigFireball");
-                longPressActivated = true;
-                Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY| RigidbodyConstraints2D.FreezeRotation;
+                    longPressActivated = true;
+                    spellController.castSpell(spellNember, 1);
+                    animation.Play("bigFireball");
+                    Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;           
             }
         }
       
@@ -132,14 +132,33 @@ public class LongPressSpell : Selectable, IPointerDownHandler, IPointerUpHandler
 
         if (ManaBarScript.mana < manaCost && (count==spellCount||count==0) || !ShootMissle.canShoot)
         {
-            this.interactable = false;
-            this.image.color = this.colors.disabledColor;
+            SetDisabled();
         }
         else
         {
-            this.interactable = true;
-            this.image.color = this.colors.normalColor;
+            SetEnabled();
         }
 
 	}
+
+    public IEnumerator ShootCooldown()
+    {
+        ShootMissle.canShoot = false; //героя вече не може да стреля
+        yield return new WaitForSeconds(0.8f); //чакаме даденото време
+        if (GameController.gameRunning) ShootMissle.canShoot = true; // пак може да стреля
+
+    }
+
+    public void SetEnabled()
+    {
+        interactable = true;
+        image.color = colors.normalColor;
+    }
+
+
+    public void SetDisabled()
+    {
+        interactable = false;
+        image.color = colors.disabledColor;
+    }
 }
