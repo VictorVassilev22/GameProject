@@ -54,7 +54,8 @@ public class ShootMissle : MonoBehaviour
         EventSystem.current.RaycastAll(eventDataCurrentPosition,results);
         for (int index = 0; index < results.Count; index++)
         {
-            if (results[index].sortingLayer == -669637945) //-669637945 is the magic number that saved our gameplay mechanics
+            Debug.Log(results[index].sortingLayer);
+            if (results[index].sortingLayer == 446050761) //446050761 is the digit code of the sorting layer
                 return true;
         }
         return false;
