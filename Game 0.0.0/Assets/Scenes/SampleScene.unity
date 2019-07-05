@@ -647,7 +647,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453046332}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14, y: -0.6920037, z: 3.564}
+  m_LocalPosition: {x: -10.5, y: 32.5, z: 3.94}
   m_LocalScale: {x: 54, y: 54, z: 1}
   m_Children: []
   m_Father: {fileID: 845865676}
@@ -1421,12 +1421,12 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 1
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 0
+    m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1469,7 +1469,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1601395291
   m_SortingLayer: 8
-  m_SortingOrder: 0
+  m_SortingOrder: 1
 --- !u!224 &845865676
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1487,7 +1487,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 318.8, y: -31.3}
+  m_AnchoredPosition: {x: 355.8, y: -74}
   m_SizeDelta: {x: 100, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &845865677
@@ -1724,7 +1724,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 1080
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 720, y: 1280}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0.119
   m_PhysicalUnit: 3
@@ -2128,7 +2128,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -37.800003, y: -43.7}
+  m_AnchoredPosition: {x: -204.5, y: -49.999992}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1223461718
@@ -2354,7 +2354,7 @@ MonoBehaviour:
   canScore: 1
   canSpeed: 1
   canShortCooldown: 1
-  cooldown: 3
+  cooldown: 2.5
   score: 0
   highScore: 0
   enemiesPassed: 0
@@ -3022,7 +3022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4793248294827062, guid: ab14c33f5af8f1a49aa41622a096c17d, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4793248294827062, guid: ab14c33f5af8f1a49aa41622a096c17d, type: 3}
       propertyPath: m_LocalScale.x
@@ -3255,7 +3255,7 @@ MonoBehaviour:
   offset_1: {x: 0, y: 0.5}
   offset_2: {x: 0, y: 0.2}
   velocity: {x: 0, y: 5}
-  chargeTime0: 0.7
+  chargeTime0: 0.55
 --- !u!224 &1645865759 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8001995441520607249, guid: b43dc5c2b35bd0646bddd7824be27ce3,
@@ -4095,12 +4095,12 @@ PrefabInstance:
     - target: {fileID: 8001995441520607249, guid: b43dc5c2b35bd0646bddd7824be27ce3,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 275
+      value: 277
       objectReference: {fileID: 0}
     - target: {fileID: 8001995441520607249, guid: b43dc5c2b35bd0646bddd7824be27ce3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -554
+      value: -556
       objectReference: {fileID: 0}
     - target: {fileID: 8001995441520607249, guid: b43dc5c2b35bd0646bddd7824be27ce3,
         type: 3}
