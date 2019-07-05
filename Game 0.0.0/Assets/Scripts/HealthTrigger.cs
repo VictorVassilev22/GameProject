@@ -7,9 +7,9 @@ public class HealthTrigger : MonoBehaviour
 {
     public bool canTrigger = true;
     private bool canAttackAnimation = true;
-
+    public GameObject shieldText;
     public float damage = 6f;
-    private EnemyScript enemyScr;
+
 
     private GameObject player;
 
@@ -90,10 +90,15 @@ public class HealthTrigger : MonoBehaviour
             if (PowerUpActivation.powerupEnablers[1])
             {
                 if (HealthBarScript.shieldPoints >= damage)
+                {
                     HealthBarScript.shieldPoints -= damage;
+                    GameController.ShowTextEffect(-damage, shieldText, player.transform);
+                }
+                    
                 else
                 {
                     HealthBarScript.health -= damage - HealthBarScript.shieldPoints;
+                    GameController.ShowTextEffect(-HealthBarScript.shieldPoints, shieldText, player.transform);
                     player.GetComponent<PlayerGetsHit>().TakeDamage(damage - HealthBarScript.shieldPoints, this.gameObject.tag);
                     HealthBarScript.shieldPoints = 0;
                     PowerUpActivation.FreeCooldownBarPositions(PowerUpActivation.instances[1]);

@@ -21,7 +21,6 @@ public class PauseMenuScript : MonoBehaviour {
         HealthBarScript.shieldPoints = 0;
         HealthBarScript.canBreakShield = false;
         GameController.gameRunning = true;
-        ShootMissle.canShoot = true;
         ctrlScript.canSpawn = true;
         CoinScript.coinCount = 0;
         ctrlScript.cooldown = 3.0f;
@@ -32,6 +31,7 @@ public class PauseMenuScript : MonoBehaviour {
         PowerUpActivation.NullOrderedBarsList();
         ctrlScript.resetMoveSpeed();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        ShootMissle.canShoot = true;
     }
   public void Pause()
     {

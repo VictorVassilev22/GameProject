@@ -22,7 +22,7 @@ public class SpellController : MonoBehaviour {
 
     private LongPressSpell spellButton;
     private GameObject bigFireball;
-    private bool isType1;
+    public static bool isType1;
     private int spellNumber;
     private Animator animation;
     private GameObject Player;
@@ -86,7 +86,6 @@ public class SpellController : MonoBehaviour {
             {
                 
                     bigFireball.gameObject.transform.localScale += new Vector3(0.01f, 0.01f);
-                    //bigFireball.gameObject.GetComponent<MissleScript>().attack+=0.5f;
                     bigFireball.gameObject.transform.localPosition += new Vector3(0.00f, bigFireballPusher);
                     if(bigFireballPusher>0) bigFireballPusher -= 0.0005f;
 

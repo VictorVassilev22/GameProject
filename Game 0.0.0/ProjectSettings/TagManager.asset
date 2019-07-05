@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - EnemyHazard
   - Missles
+  - Texts
   layers:
   - Default
   - TransparentFX

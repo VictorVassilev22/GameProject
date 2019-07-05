@@ -123,7 +123,7 @@ public class GameController : MonoBehaviour {
     {
         canScore = false;
         canSpawn = false;
-        ShootMissle.canShoot = false;
+        //ShootMissle.canShoot = false;
         rollScr.canAdd = false;
         PowerUpActivation.NullOrderedBarsList();
         StartCoroutine(GameEndWait());
