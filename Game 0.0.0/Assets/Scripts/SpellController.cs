@@ -24,8 +24,11 @@ public class SpellController : MonoBehaviour {
     private GameObject bigFireball;
     private bool isType1;
     private int spellNumber;
+    private Animator animation;
+    private GameObject Player;
 
-    private float bigFireballPusher = 0.035f;
+
+    private float bigFireballPusher = 0.03f;
     public void castSpell(int spellNum, int spellType)
     {
         spellNumber = spellNum;
@@ -38,7 +41,7 @@ public class SpellController : MonoBehaviour {
                 return;
         }
     }
-
+    
     private void castFireball(int spellType)
     {
         switch (spellType)
@@ -71,29 +74,34 @@ public class SpellController : MonoBehaviour {
     }
 
     void Start () {
-        
+        animation =this.GetComponent<Animator>();
+        Player = GameObject.Find("Player");
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(isType1)
         {
-            if (spellNumber == 0 && LongPressSpell.pointerDown && bigFireball.transform.localScale.x < 8)
+            if (spellNumber == 0 && LongPressSpell.pointerDown && bigFireball.transform.localScale.x < 6)
             {
                 
-                    bigFireball.gameObject.transform.localScale += new Vector3(0.05f, 0.05f);
-                    bigFireball.gameObject.GetComponent<MissleScript>().attack+=0.5f;
-                bigFireball.gameObject.transform.localPosition += new Vector3(0.00f, bigFireballPusher);
-               if(bigFireballPusher>0) bigFireballPusher -= 0.0005f;
+                    bigFireball.gameObject.transform.localScale += new Vector3(0.01f, 0.01f);
+                    //bigFireball.gameObject.GetComponent<MissleScript>().attack+=0.5f;
+                    bigFireball.gameObject.transform.localPosition += new Vector3(0.00f, bigFireballPusher);
+                    if(bigFireballPusher>0) bigFireballPusher -= 0.0005f;
 
             }
             else
             {
                 isType1 = false;
                 bigFireball.GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x, velocity.y * transform.localScale.y); //Задаваме скоростта на топката по оста 'Y'
-                bigFireballPusher = 0.035f;
+                animation.Play("shootFireball");
+                LongPressSpell.pointerDown = false;
+                LongPressSpell.longPressActivated = false;
+                Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;           
+                bigFireballPusher = 0.03f;
             }
         }
-        
+
     }
 }

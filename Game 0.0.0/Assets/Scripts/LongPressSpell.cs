@@ -6,11 +6,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class LongPressSpell : Selectable, IPointerDownHandler, IPointerUpHandler {
-
+    //this script is linked to spellbutton
     public int spellNember;
 
     public static bool pointerDown;
-    private bool longPressActivated;
+    public static bool longPressActivated;
     private bool shortCooldownActive;
     private bool longCooldownActive;
     private GameObject Player;
@@ -18,6 +18,7 @@ public class LongPressSpell : Selectable, IPointerDownHandler, IPointerUpHandler
     private float count;
     private float cooldown;
     private Animator animation;
+
 
     public float manaCost;
     public int spellCount;
@@ -43,6 +44,7 @@ public class LongPressSpell : Selectable, IPointerDownHandler, IPointerUpHandler
         if (cooldown == 0&&this.interactable)
         {
             pointerDown = true;
+            Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;           
         }
     }
 
@@ -53,18 +55,20 @@ public class LongPressSpell : Selectable, IPointerDownHandler, IPointerUpHandler
             animation.Play("shootFireball");
             longPressActivated = false;
         }
-        pointerDown = false;
-        Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+       
+        Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;           
         if (cooldown == 0&&this.interactable)
         {
             if (count==spellCount)ManaBarScript.mana -= manaCost;
             if (time < 0.5 || (count < spellCount && count > 0))
             {
-                animation.Play("fireball");
+                if (pointerDown==true)
+                    animation.Play("fireball");
                 StartCoroutine(ShootCooldown());
                 spellController.castSpell(spellNember, 0);
                 count--;
             }
+
             else if (count == spellCount)
             {
                 count = 0;
@@ -83,6 +87,7 @@ public class LongPressSpell : Selectable, IPointerDownHandler, IPointerUpHandler
             }
         }
 
+        pointerDown = false;
         time = 0;
     }
 
@@ -100,7 +105,7 @@ public class LongPressSpell : Selectable, IPointerDownHandler, IPointerUpHandler
                     longPressActivated = true;
                     spellController.castSpell(spellNember, 1);
                     animation.Play("bigFireball");
-                    Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;           
+                   // Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;           
             }
         }
       
