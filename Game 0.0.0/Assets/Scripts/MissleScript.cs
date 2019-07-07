@@ -7,6 +7,9 @@ public class MissleScript : MonoBehaviour {
     public GameObject explosion;
     public Vector2 missleExplosionOffset = new Vector2(0.1f, -0.2f);
     public float destroyTime;
+    public int critChance;
+    public bool isCrit;
+
 
     [SerializeField]
     private bool timeDestroy;
@@ -15,7 +18,16 @@ public class MissleScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        if(timeDestroy) Destroy(this.gameObject, destroyTime);
+        isCrit = false;
+        System.Random rnd = new System.Random();
+        int critNum = rnd.Next(100);
+
+        if (critNum < critChance)
+            isCrit = true;
+
+        if(timeDestroy)
+            Destroy(this.gameObject, destroyTime);
+
         Player = GameObject.Find("Player");
 	}
 
@@ -35,7 +47,8 @@ public class MissleScript : MonoBehaviour {
             {
                 LongPressSpell.pointerDown = false; //ako e golqm fireball pri dopir se izstrelva vednaga
             }
-            if(explosion) Instantiate(explosion, (Vector2)this.gameObject.transform.position + missleExplosionOffset * transform.localScale.y, this.gameObject.transform.rotation);
+            if(explosion) //ako ima eksploziq puskai eksploziq
+                Instantiate(explosion, (Vector2)this.gameObject.transform.position + missleExplosionOffset * transform.localScale.y, this.gameObject.transform.rotation);
         }
     }
 }

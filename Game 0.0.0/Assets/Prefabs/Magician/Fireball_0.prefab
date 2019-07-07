@@ -98,6 +98,8 @@ MonoBehaviour:
   explosion: {fileID: 0}
   missleExplosionOffset: {x: 0, y: 0}
   destroyTime: 8
+  critChance: 5
+  isCrit: 0
   timeDestroy: 1
 --- !u!58 &58614316056581984
 CircleCollider2D:

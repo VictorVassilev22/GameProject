@@ -34,6 +34,9 @@ public class EnemyScript : MonoBehaviour {
     private DropOut shield;
     private DropOut bomb;
 
+    private GameObject missle;
+    private MissleScript missleScript;
+
 
     public int coinCount = 3;
 
@@ -73,9 +76,20 @@ public class EnemyScript : MonoBehaviour {
     {
         if (col.gameObject.tag == "Missles") // check if the object colliding is the missle
         {
-            GameObject missle = col.gameObject;
-            MissleScript missleScript = missle.GetComponent<MissleScript>();
-            this.health -= missleScript.attack;
+             missle = col.gameObject;
+             missleScript = missle.GetComponent<MissleScript>();
+
+            if (missleScript.isCrit)
+                {
+                    this.health -= missleScript.attack*2.5f;
+                    this.GetComponent<EnemyHealthBar>().EnemyGetsHit(missleScript.attack, missleScript.attack * 2.5f); //proverka dali e krit                                                                                                                     //else
+                }
+            else
+                {
+                    this.health -= missleScript.attack;
+                    this.GetComponent<EnemyHealthBar>().EnemyGetsHit(missleScript.attack, missleScript.attack);
+                }
+           
         }
     }
 
