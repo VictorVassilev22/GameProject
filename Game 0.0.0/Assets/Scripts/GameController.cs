@@ -34,7 +34,6 @@ public class GameController : MonoBehaviour {
 
     private Vector2 lastPos = new Vector2();
     private ShootMissle shoot;
-    private RollingScript rollScr;
     //private PauseMenuScript pmScr;
     private AudioSource music;
     public GameObject reset;
@@ -45,7 +44,6 @@ public class GameController : MonoBehaviour {
         showHighScore.text = PlayerPrefs.GetInt("Text(3)", 0).ToString();
         shoot = GameObject.Find("Player").GetComponent<ShootMissle>();
         //pmScr = GameObject.Find("PauseMenu").GetComponent<PauseMenuScript>();
-        rollScr = GameObject.Find("Street").GetComponent<RollingScript>();
         music = GameObject.Find("Music").GetComponent<AudioSource>();
        // pauseMenu = GameObject.Find("PauseMenu");
         ShowBarTexts();
@@ -124,7 +122,6 @@ public class GameController : MonoBehaviour {
         canScore = false;
         canSpawn = false;
         //ShootMissle.canShoot = false;
-        rollScr.canAdd = false;
         PowerUpActivation.NullOrderedBarsList();
         StartCoroutine(GameEndWait());
     }
@@ -139,7 +136,6 @@ public class GameController : MonoBehaviour {
         music.Stop();
         yield return new WaitForSeconds(3f);
         Time.timeScale = 0f;
-        rollScr.speed = 0f;
         pauseMenu.SetActive(true);
     }
 
