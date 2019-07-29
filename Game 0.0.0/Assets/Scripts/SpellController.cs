@@ -28,7 +28,7 @@ public class SpellController : MonoBehaviour {
     private GameObject Player;
 
 
-    private float bigFireballPusher = 0.03f;
+    private float bigFireballPusher = 0.04f;
     public void castSpell(int spellNum, int spellType)
     {
         spellNumber = spellNum;
@@ -87,7 +87,7 @@ public class SpellController : MonoBehaviour {
                 
                     bigFireball.gameObject.transform.localScale += new Vector3(0.01f, 0.01f);
                     bigFireball.gameObject.transform.localPosition += new Vector3(0.00f, bigFireballPusher);
-                    if(bigFireballPusher>0) bigFireballPusher -= 0.0005f;
+                    if(bigFireballPusher>0) bigFireballPusher -= 0.00075f;
 
             }
             else
@@ -98,7 +98,7 @@ public class SpellController : MonoBehaviour {
                 LongPressSpell.pointerDown = false;
                 LongPressSpell.longPressActivated = false;
                 Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;           
-                bigFireballPusher = 0.03f;
+                bigFireballPusher = 0.04f;
             }
         }
 

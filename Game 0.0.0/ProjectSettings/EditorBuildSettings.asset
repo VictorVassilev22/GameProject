@@ -5,10 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/TownCenter.unity
+    guid: dc5f5ccd83f43814586a8b9e19e586ac
+  - enabled: 1
+    path: Assets/Scenes/QuestScene.unity
+    guid: c984cde59ae20e940822bc61ecaf6263
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: a69d1721ad948e447bcaa0dc8526e4cd
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
