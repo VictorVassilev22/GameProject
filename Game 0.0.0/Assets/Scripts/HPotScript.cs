@@ -12,7 +12,7 @@ public class HPotScript : MonoBehaviour {
         if (col.gameObject.name == "Player")
         {
             Destroy(this.gameObject);
-            if (GameController.gameRunning)
+            if (PauseMenuScript.ctrlScript.gameRunning)
             {
                 if (HealthBarScript.maxHealth<HealthBarScript.health+gain)
                 {

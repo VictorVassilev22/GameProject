@@ -46,7 +46,7 @@ public class HealthBarScript : MonoBehaviour {
         {
             canBreakShield = true;
             shieldText.SetActive(true);
-            shieldText.GetComponent<Text>().text = "+ " + shieldPoints.ToString();
+            shieldText.GetComponent<TextMesh>().text = "+ " + shieldPoints.ToString();
             if (shieldPoints + health >= maxHealth)
             {
                 shieldBar.fillAmount = 1;

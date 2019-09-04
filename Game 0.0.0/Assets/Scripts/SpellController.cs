@@ -50,7 +50,6 @@ public class SpellController : MonoBehaviour {
                 StartCoroutine(castMissleType(chargeTime0, spell_00));
                 break;
             case 1:
-                isType1 = true;
                 StartCoroutine(castLongPressType(spell_01));
                 break;
             default:
@@ -69,6 +68,7 @@ public class SpellController : MonoBehaviour {
     IEnumerator castLongPressType(GameObject spell)
     {
         yield return new WaitForSeconds(0.25f);
+        isType1 = true;
         bigFireball = Instantiate(spell, (Vector2)transform.position + offset_2 * transform.localScale.y, Quaternion.identity); //Spawn-ваме топката на даденото разстояние пред героя
         
     }

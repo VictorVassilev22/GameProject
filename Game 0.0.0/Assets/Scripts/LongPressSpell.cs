@@ -30,7 +30,8 @@ public class LongPressSpell : Selectable, IPointerDownHandler, IPointerUpHandler
 
     private SpellController spellController; 
    
-    private void Start()
+
+    new private void Start()
     {
         count = spellCount;
         Player = GameObject.Find("Player");
@@ -150,7 +151,7 @@ public class LongPressSpell : Selectable, IPointerDownHandler, IPointerUpHandler
     {
         ShootMissle.canShoot = false; //героя вече не може да стреля
         yield return new WaitForSeconds(0.8f); //чакаме даденото време
-        if (GameController.gameRunning) ShootMissle.canShoot = true; // пак може да стреля
+        if (PauseMenuScript.ctrlScript.gameRunning) ShootMissle.canShoot = true; // пак може да стреля
 
     }
 

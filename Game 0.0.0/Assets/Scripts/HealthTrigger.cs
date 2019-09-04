@@ -45,7 +45,7 @@ public class HealthTrigger : MonoBehaviour
     private void Update()
     {
         if ((this.GetComponentInParent<Transform>().position.y <= -8f  || 
-            !GameController.gameRunning)&&this.gameObject.tag!="EnemyHazard") canTrigger = false;
+            !PauseMenuScript.ctrlScript.gameRunning)&&this.gameObject.tag!="EnemyHazard") canTrigger = false;
 
         if (this.gameObject.tag == "Enemy" && Mathf.Abs(this.transform.position.x-player.transform.position.x)<=1.5f
             && Mathf.Abs(this.transform.position.y - player.transform.position.y) <= 3f && canTrigger)
@@ -59,9 +59,9 @@ public class HealthTrigger : MonoBehaviour
     {
         if (col.gameObject.tag == "Enemy")
         {
-            if (this.gameObject.name == "Ex-Bomb(Clone)")
+            if (this.gameObject.name == "Ex-Bomb(Clone)" && this.gameObject!=null)
                 col.gameObject.GetComponent<EnemyScript>().health = 0;
-            else
+            else if(this.gameObject!=null)
                 col.gameObject.GetComponent<EnemyScript>().health -= damage;
         }
     }

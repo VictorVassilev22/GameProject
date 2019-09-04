@@ -343,7 +343,7 @@ MonoBehaviour:
   canTrigger: 1
   shieldText: {fileID: 7826695354312065160, guid: 1e95865f0dab1c3439f5f3fb6566f740,
     type: 3}
-  damage: 6
+  damage: 25
 --- !u!114 &114265652229166808
 MonoBehaviour:
   m_ObjectHideFlags: 0

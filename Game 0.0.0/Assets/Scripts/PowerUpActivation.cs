@@ -18,7 +18,7 @@ public class PowerUpActivation : MonoBehaviour {
 
     public static GameObject[] timers= new GameObject[4];
     public static GameObject[] instances = new GameObject[4];
-    public static Vector2[] positions = new Vector2[4]{ new Vector2(0.5f, -9.75f), new Vector2(-4.1f, -9.75f),
+    public static Vector2[] positions = new Vector2[4]{ new Vector2(0.625f, -8.3f), new Vector2(-3f, -8.3f), // last two vectors are wrong positioned
         new Vector2(2.6f, -9.2f), new Vector2(-2.9f, -9.2f) };
     private float[] durations = new float[4];
     private float[] timeLefts = new float[4];
@@ -83,8 +83,11 @@ public class PowerUpActivation : MonoBehaviour {
                         GameController.ShowPowerUpAnimation(disappearingAnimation, player.transform);
                         HealthBarScript.canBreakShield = false;
                     }
-                    FreeCooldownBarPositions(instances[i]);
-                    Destroy(instances[i]);
+                    if(instances[i]!=null)
+                    {
+                        FreeCooldownBarPositions(instances[i]);
+                        Destroy(instances[i]);
+                    }
                 }
             }
         }

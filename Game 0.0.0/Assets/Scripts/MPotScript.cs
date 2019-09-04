@@ -14,7 +14,7 @@ public class MPotScript : MonoBehaviour {
         if (col.gameObject.name == "Player")
         {
             Destroy(this.gameObject);
-            if (GameController.gameRunning)
+            if (PauseMenuScript.ctrlScript.gameRunning)
             {
                 if (ManaBarScript.maxMana < ManaBarScript.mana + gain)
                 {

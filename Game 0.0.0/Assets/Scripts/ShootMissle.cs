@@ -14,11 +14,13 @@ public class ShootMissle : MonoBehaviour
     public float chargeTime = 0.6f; //0.432f; //Времето за зареждане на изстрела
     public float manaCost = 5f;
     private Animator animation;
+    public static GameController ctrlScript;
 
     // Use this for initialization
     void Start()
     {
          animation = GetComponent<Animator>(); //закачаме нашия аниматор за animate
+        ctrlScript = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
     // Update is called once per frame
@@ -54,7 +56,7 @@ public class ShootMissle : MonoBehaviour
         EventSystem.current.RaycastAll(eventDataCurrentPosition,results);
         for (int index = 0; index < results.Count; index++)
         {
-            Debug.Log(results[index].sortingLayer);
+            //Debug.Log(results[index].sortingLayer);
             if (results[index].sortingLayer == 446050761) //446050761 is the digit code of the sorting layer
                 return true;
         }
@@ -78,8 +80,9 @@ public class ShootMissle : MonoBehaviour
     public IEnumerator ShootCooldown()
     {
         canShoot = false; //героя вече не може да стреля
+        if(!ctrlScript.gameRunning) canShoot = true;
         yield return new WaitForSeconds(cooldown); //чакаме даденото време
-        if (GameController.gameRunning) canShoot = true; // пак може да стреля
+            canShoot = true; // пак може да стреля
 
     }
 }

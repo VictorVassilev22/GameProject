@@ -8,11 +8,12 @@ public class GameController : MonoBehaviour {
     public Vector2 spawnValues;
 
 
-    public static bool gameRunning = true;
+    public bool gameRunning = true;
     public bool canSpawn = true;
     public bool canScore = true;
     public bool canSpeed = true;
     public bool canShortCooldown = true;
+    public static bool hasPlayed = false;
 
     public float cooldown = 3.0f;
     public float score = 0.0f;
@@ -24,9 +25,9 @@ public class GameController : MonoBehaviour {
     public static float enemySpd = moveSpeed;
     private float resetSpd = moveSpeed;
 
-    public Text showScore;
-    public Text showHighScore;
-    public Text coinCounter;
+    public GameObject showScore;
+    public GameObject showHighScore;
+    public GameObject coinCounter;
     public GameObject healthText;
     public GameObject manaText;
 
@@ -34,45 +35,50 @@ public class GameController : MonoBehaviour {
 
     private Vector2 lastPos = new Vector2();
     private ShootMissle shoot;
-    //private PauseMenuScript pmScr;
     private AudioSource music;
     public GameObject reset;
-    public GameObject pauseMenu;
+    public GameObject deathMenu;
 
     private void Start()
     {
-        showHighScore.text = PlayerPrefs.GetInt("Text(3)", 0).ToString();
+        hasPlayed = true;
+        showHighScore.GetComponent<TextMesh>().text = PlayerPrefs.GetInt("Text(3)", 0).ToString();
         shoot = GameObject.Find("Player").GetComponent<ShootMissle>();
         //pmScr = GameObject.Find("PauseMenu").GetComponent<PauseMenuScript>();
         music = GameObject.Find("Music").GetComponent<AudioSource>();
-       // pauseMenu = GameObject.Find("PauseMenu");
+        // pauseMenu = GameObject.Find("PauseMenu");
+        coinCounter.GetComponent<TextMesh>().text = CoinScript.coinCount.ToString();
         ShowBarTexts();
+        CoinScript.coinCount = 0;
     }
 
     void Update()
     {
         if(gameRunning&&canSpawn)
-        SpawnWaves();
+        {
+            SpawnWaves();
+        }
+            
 
         if(canScore)
-        score += 0.1f;
+            score += 0.1f;
 
         //if(cooldown>1.0f)
        //if(canShortCooldown) cooldown-=0.0004f;
 
         int intScore = (int)score;
-        showScore.text = (intScore).ToString();
+        showScore.GetComponent<TextMesh>().text = (intScore).ToString();
         ShowBarTexts();
 
         if (score> PlayerPrefs.GetInt("Text(3)", 0))
         {
             PlayerPrefs.SetInt("Text(3)", intScore);
-            showHighScore.text = intScore.ToString();
+            showHighScore.GetComponent<TextMesh>().text = intScore.ToString();
         }
 
-        coinCounter.text = CoinScript.coinCount.ToString();
+        coinCounter.GetComponent<TextMesh>().text = CoinScript.coinCount.ToString();
 
-       // if (canSpeed)moveSpeed += 0.00045f;
+
         enemySpd = moveSpeed;
 
         if (HealthBarScript.health <= 0)
@@ -88,7 +94,7 @@ public class GameController : MonoBehaviour {
     }
     void SpawnWaves()
     {
-        for (int i = 0; i <= 20; i++)
+        for (int i = 0; i <= 5; i++)
         {
             Vector2 spawnPosition = new Vector2(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y);
             Quaternion spawnRotation = Quaternion.identity;
@@ -97,9 +103,9 @@ public class GameController : MonoBehaviour {
             {
                 Instantiate(hazard, spawnPosition, spawnRotation);
                 lastPos = spawnPosition;
-                Debug.Log(pauseMenu);
+                //Debug.Log(pauseMenu);
             }
-            // this commented code, once uncommented spawns up to 5 enemies a row! (now uncommented)
+            
             StartCoroutine(StartCooldown());
         }
     }
@@ -120,9 +126,11 @@ public class GameController : MonoBehaviour {
     void EndGame()
     {
         canScore = false;
-        canSpawn = false;
+        //canSpawn = false;
+        gameRunning = false;
         //ShootMissle.canShoot = false;
         PowerUpActivation.NullOrderedBarsList();
+        PlayerPrefs.SetInt("Loot", CoinScript.coinCount);
         StartCoroutine(GameEndWait());
     }
 
@@ -134,15 +142,15 @@ public class GameController : MonoBehaviour {
     IEnumerator GameEndWait()
     {
         music.Stop();
-        yield return new WaitForSeconds(3f);
-        Time.timeScale = 0f;
-        pauseMenu.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+            deathMenu.SetActive(true);           
     }
 
     IEnumerator StartCooldown()
     {
         canSpawn = false;
         yield return new WaitForSeconds(cooldown);
-        canSpawn = true;
+        if(gameRunning)
+            canSpawn = true;
     }
 }

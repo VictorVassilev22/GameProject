@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 114444285233743814}
   - component: {fileID: 95342885039559946}
   m_Layer: 10
-  m_Name: HitText
+  m_Name: PlayerHitText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2d9b636bb876ca54aad0ef30ced71273, type: 3}
+  - {fileID: 2100000, guid: 49aa17773c9e85947a0ea6b47aeb8c00, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -89,7 +89,7 @@ TextMesh:
   m_FontSize: 0
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 2d9b636bb876ca54aad0ef30ced71273, type: 3}
+  m_Font: {fileID: 12800000, guid: 49aa17773c9e85947a0ea6b47aeb8c00, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4278190335

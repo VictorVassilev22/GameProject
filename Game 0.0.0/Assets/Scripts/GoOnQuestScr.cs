@@ -9,6 +9,7 @@ public class GoOnQuestScr : MonoBehaviour
     private Animator animator;
     private GameObject player;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,13 +20,14 @@ public class GoOnQuestScr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.name == "Player")
         {
+            PlayerFadeOut.canFade = true;
             Debug.Log("Here");
             this.GetComponent<Rigidbody2D>().simulated = false;
             player.GetComponent<TownAccelerator>().speed = 1;
