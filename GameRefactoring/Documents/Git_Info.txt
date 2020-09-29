@@ -1,3 +1,4 @@
+0. Update to the latest version of Unity
 1. Pull from the branch you want
 2. Make changes
 3. Commit as many changes as you need
