@@ -23,9 +23,7 @@ public class PlayerMovement : MonoBehaviour
 #if UNITY_ANDROID
         horiz = Input.acceleration.x;
 #endif
-        if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Player_ChargeMissle"))
-            rbody.velocity = Vector2.zero;
-        else
-            rbody.velocity = new Vector2(horiz * speed * Time.deltaTime, 0);
+        
+        rbody.velocity = new Vector2(horiz * speed * Time.deltaTime, 0);
     }
 }

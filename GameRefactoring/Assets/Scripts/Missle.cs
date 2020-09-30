@@ -20,13 +20,13 @@ public class Missle : MonoBehaviour
     void Update()
     {
         AnimatorStateInfo info = missleAnimator.GetCurrentAnimatorStateInfo(0);
-        if (info.IsName("Missle_Charging"))
+        if (info.IsName("Missle_Charging")) //if charging animation is playing
         {
-            if (info.normalizedTime>1 && !isFinished)
+            if (info.normalizedTime>1 && !isFinished) //if time playing animation is up 
             {
-                isFinished = true;
+                isFinished = true; //set animation as finished
                 Vector2 directionUp = new Vector2(0, 1);
-                GetComponent<Rigidbody2D>().AddForce(speed * directionUp, ForceMode2D.Impulse);              
+                GetComponent<Rigidbody2D>().AddForce(speed * directionUp, ForceMode2D.Impulse); //add force to move missle upwards          
             }
         }
     }

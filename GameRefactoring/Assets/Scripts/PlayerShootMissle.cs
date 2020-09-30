@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerShootMissle : MonoBehaviour
 {
+    const float MinAttackCooldown = 0.7f;
+    const float MinOffset = 0.3f;
 
     [SerializeField]
     float missleOffsetFromPlayer = 0f;
@@ -14,9 +16,12 @@ public class PlayerShootMissle : MonoBehaviour
     [SerializeField]
     GameObject misslePrefab;
 
-
     Timer timer;
     Animator playerAnimator;
+    GameObject missle;
+    BoxCollider2D playerCollider;
+    Vector3 position;
+
     bool mouseClicked = false;
     bool hasFired = false;
 
@@ -24,9 +29,20 @@ public class PlayerShootMissle : MonoBehaviour
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
+        playerCollider = GetComponent<BoxCollider2D>();
         timer = gameObject.AddComponent<Timer>();
         timer.IsFixed = true;
         timer.FixedTime = attackCooldown;
+
+        if (attackCooldown < MinAttackCooldown)
+        {
+            attackCooldown = MinAttackCooldown;
+        }
+
+        if(missleOffsetFromPlayer < MinOffset)
+        {
+            missleOffsetFromPlayer = MinOffset;
+        }
     }
 
     // Update is called once per frame
@@ -35,13 +51,14 @@ public class PlayerShootMissle : MonoBehaviour
         mouseClicked = Input.GetAxis("Attack") > 0 && !timer.IsRunning;
         playerAnimator.SetBool("Attack", mouseClicked);
 
+        float yOffset = playerCollider.bounds.extents.y;
+        position = new Vector3(transform.position.x, transform.position.y + yOffset + missleOffsetFromPlayer, transform.position.z);
+
         if (mouseClicked)
         {
             if (!hasFired && !timer.IsRunning)
-            {
-                float yOffset = GetComponent<BoxCollider2D>().bounds.extents.y;
-                Vector3 position = new Vector3(transform.position.x, transform.position.y + yOffset + missleOffsetFromPlayer, transform.position.z);               
-                GameObject missle = Instantiate<GameObject>(misslePrefab, position, Quaternion.identity);               
+            {            
+                missle = Instantiate<GameObject>(misslePrefab, position, Quaternion.identity);               
                 hasFired = true;
                 timer.Restart();
             }
@@ -51,5 +68,9 @@ public class PlayerShootMissle : MonoBehaviour
             hasFired = false;
         }
 
+        if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Player_ChargeMissle"))
+        {
+            missle.transform.position = position;
+        }
     }
 }

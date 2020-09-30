@@ -360,5 +360,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5286118462819963948, guid: 0afd4ab769ba45a4cb51ef6ecff10292,
+        type: 3}
+      propertyPath: attackCooldown
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286118462819963948, guid: 0afd4ab769ba45a4cb51ef6ecff10292,
+        type: 3}
+      propertyPath: missleOffsetFromPlayer
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0afd4ab769ba45a4cb51ef6ecff10292, type: 3}
