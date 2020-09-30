@@ -12,6 +12,8 @@ public class ResizeToScreen : MonoBehaviour
     /// </summary>
     void Start()
     {
+        Vector3 cameraPosition = Camera.main.transform.position;
+        transform.position = new Vector3(cameraPosition.x, cameraPosition.y, -cameraPosition.z);
         //getting hight and width for the current screen
         var worldSpaceWidth = ScreenUtils.ScreenRight * 2;
         var worldSpaceHeight = ScreenUtils.ScreenTop * 2;

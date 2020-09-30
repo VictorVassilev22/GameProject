@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-
+  
 
     #region Fields
 
@@ -33,11 +33,13 @@ public class Timer : MonoBehaviour
     public bool IsFixed
     {
         get { return IsFixed; }
+        set { isFixed = value; }
     }
 
     public float FixedTime
     {
         get { return isFixed ? fixedTime : -1f; }
+        set { fixedTime = value; }
     }
 
     public float TimePassed
@@ -81,6 +83,12 @@ public class Timer : MonoBehaviour
             return;
             
         isRunning = true;
+    }
+
+    public void Restart()
+    {
+        timePassed = 0f;
+        Run();
     }
 
     #endregion
