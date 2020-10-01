@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerShootMissle : MonoBehaviour
 {
     const float MinAttackCooldown = 0.7f;
-    const float MinOffset = 0.3f;
+    const float MinOffsetFromPlayer = 0.3f;
 
     [SerializeField]
     float missleOffsetFromPlayer = 0f;
@@ -20,6 +20,7 @@ public class PlayerShootMissle : MonoBehaviour
     Animator playerAnimator;
     GameObject missle;
     BoxCollider2D playerCollider;
+    CircleCollider2D missleCollider;
     Vector3 position;
 
     bool mouseClicked = false;
@@ -30,7 +31,9 @@ public class PlayerShootMissle : MonoBehaviour
     {
         playerAnimator = GetComponent<Animator>();
         playerCollider = GetComponent<BoxCollider2D>();
+        missleCollider = misslePrefab.GetComponent<CircleCollider2D>();
         timer = gameObject.AddComponent<Timer>();
+
         timer.IsFixed = true;
         timer.FixedTime = attackCooldown;
 
@@ -38,21 +41,21 @@ public class PlayerShootMissle : MonoBehaviour
         {
             attackCooldown = MinAttackCooldown;
         }
-
-        if(missleOffsetFromPlayer < MinOffset)
-        {
-            missleOffsetFromPlayer = MinOffset;
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
         mouseClicked = Input.GetAxis("Attack") > 0 && !timer.IsRunning;
+
+#if UNITY_ANDROID
+        mouseClicked = Input.touches.Length > 0 && !timer.IsRunning;
+#endif
+
         playerAnimator.SetBool("Attack", mouseClicked);
 
-        float yOffset = playerCollider.bounds.extents.y;
-        position = new Vector3(transform.position.x, transform.position.y + yOffset + missleOffsetFromPlayer, transform.position.z);
+        float yOffset = playerCollider.bounds.extents.y + missleCollider.bounds.extents.y + missleOffsetFromPlayer + MinOffsetFromPlayer;
+        position = new Vector3(transform.position.x, transform.position.y + yOffset, transform.position.z);
 
         if (mouseClicked)
         {

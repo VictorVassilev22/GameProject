@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a82ce005dfd4d314eb48297861e9a18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missleOffsetFromPlayer: 0.5
-  attackCooldown: 1
+  missleOffsetFromPlayer: 0
+  attackCooldown: 0.7
   misslePrefab: {fileID: 4724870781948873852, guid: bbb4a6ba0290feb4a8bb3a473cda015d,
     type: 3}

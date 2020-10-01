@@ -7,13 +7,20 @@ public class ResizeToScreen : MonoBehaviour
     [SerializeField]
     bool KeepAspectRatio;
 
+    [SerializeField]
+    int backgroundLayer = 0;
+
+    float offsetFromCenterY;
+
     /// <summary>
     /// Start is called when the game begins
     /// </summary>
     void Start()
     {
         Vector3 cameraPosition = Camera.main.transform.position;
-        transform.position = new Vector3(cameraPosition.x, cameraPosition.y, -cameraPosition.z);
+        offsetFromCenterY = backgroundLayer * ScreenUtils.ScreenTop * 2;
+
+        transform.position = new Vector3(cameraPosition.x, cameraPosition.y + offsetFromCenterY, -cameraPosition.z);
         //getting hight and width for the current screen
         var worldSpaceWidth = ScreenUtils.ScreenRight * 2;
         var worldSpaceHeight = ScreenUtils.ScreenTop * 2;
