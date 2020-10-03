@@ -16,7 +16,7 @@ public class TimeDestructor : MonoBehaviour
         timer = this.gameObject.AddComponent<Timer>();
         //setting seconds to timer
         timer.IsFixed = true;
-        timer.FixedTime = destroyAfter;
+        timer.Duration = destroyAfter;
         //run the timer
         timer.Run();
     }

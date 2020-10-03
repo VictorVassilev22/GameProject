@@ -35,7 +35,7 @@ public class PlayerShootMissle : MonoBehaviour
         timer = gameObject.AddComponent<Timer>();
 
         timer.IsFixed = true;
-        timer.FixedTime = attackCooldown;
+        timer.Duration = attackCooldown;
 
         if (attackCooldown < MinAttackCooldown)
         {
@@ -59,7 +59,7 @@ public class PlayerShootMissle : MonoBehaviour
 
         if (mouseClicked)
         {
-            if (!hasFired && !timer.IsRunning)
+            if (!hasFired)
             {            
                 missle = Instantiate<GameObject>(misslePrefab, position, Quaternion.identity);               
                 hasFired = true;

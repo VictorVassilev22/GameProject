@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KeepAspectRatio: 1
-  backgroundLayer: 0
+  backgroundLayer: 1
 --- !u!114 &7757722099768892342
 MonoBehaviour:
   m_ObjectHideFlags: 0

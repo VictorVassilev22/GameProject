@@ -15,7 +15,7 @@ public class Timer : MonoBehaviour
 
     // value of the threshold
     [SerializeField]
-    float fixedTime = -1f;
+    float duration = -1f;
 
     //is the timer running
     bool isRunning = false;
@@ -36,10 +36,10 @@ public class Timer : MonoBehaviour
         set { isFixed = value; }
     }
 
-    public float FixedTime
+    public float Duration
     {
-        get { return isFixed ? fixedTime : -1f; }
-        set { fixedTime = value; }
+        get { return isFixed ? duration : -1f; }
+        set { duration = value; }
     }
 
     public float TimePassed
@@ -61,7 +61,7 @@ public class Timer : MonoBehaviour
 
         if (isFixed)
         {
-            if (timePassed >= fixedTime)
+            if (timePassed >= duration)
             {
                 Pause();
             }
@@ -79,7 +79,7 @@ public class Timer : MonoBehaviour
 
     public void Run()
     {
-        if (isFixed && timePassed >= fixedTime)
+        if (isFixed && timePassed >= duration)
             return;
             
         isRunning = true;
