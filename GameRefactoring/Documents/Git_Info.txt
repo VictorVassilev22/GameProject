@@ -4,3 +4,6 @@
 3.git add .
 4.git commit -m "накратко какво прави feature-а"
 5.git push origin MasterRefactoring-Feature
+6.git checkout MasterRefactoring
+//only once -> 7.git branch --set-upstream-to=origin/MasterRefactoring
+8.git pull
