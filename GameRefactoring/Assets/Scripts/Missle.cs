@@ -27,10 +27,10 @@ public class Missle : MonoBehaviour
         missleCollider = GetComponent<Collider2D>();
         missleCollider.enabled = false;
 
-        //setting the animation name
+        //Setting the animation name
         animationName = "Missle_Charging";
 
-        //setting direction UP
+        //Setting direction UP
         SetDirection(0, 1);
 
     }
@@ -44,7 +44,6 @@ public class Missle : MonoBehaviour
             hasLaunched = true;
         }
     }
-
     /// <summary>
     /// Usually a charging animation is played. This method checks if the animation has finished or is still playing
     /// </summary>
