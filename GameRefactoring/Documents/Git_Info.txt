@@ -1,5 +1,9 @@
-0. Update to the latest version of Unity
-1. Pull from the branch you want
-2. Make changes
-3. Commit as many changes as you need
-4. Push to your current branch
+0.git branch MasterRefactoring-Feature
+1.git checkout MasterRefactoring-Feature
+2. Правим feature-a
+3.git add .
+4.git commit -m "накратко какво прави feature-а"
+5.git push origin MasterRefactoring-Feature
+6.git checkout MasterRefactoring
+//only once -> 7.git branch --set-upstream-to=origin/MasterRefactoring
+8.git pull
