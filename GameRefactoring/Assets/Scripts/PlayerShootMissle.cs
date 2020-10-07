@@ -35,12 +35,13 @@ public class PlayerShootMissle : MonoBehaviour
         timer = gameObject.AddComponent<Timer>();
 
         timer.IsFixed = true;
-        timer.Duration = attackCooldown;
 
         if (attackCooldown < MinAttackCooldown)
         {
             attackCooldown = MinAttackCooldown;
         }
+
+        timer.Duration = attackCooldown;      
     }
 
     // Update is called once per frame
