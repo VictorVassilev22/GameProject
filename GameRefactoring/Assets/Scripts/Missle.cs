@@ -43,6 +43,10 @@ public class Missle : MonoBehaviour
             Launch(speed, impulseDirection);
             hasLaunched = true;
         }
+        else
+        {
+            StayWithParent();
+        }
     }
     /// <summary>
     /// Usually a charging animation is played. This method checks if the animation has finished or is still playing
@@ -85,6 +89,12 @@ public class Missle : MonoBehaviour
     {
         impulseDirection.x = x;
         impulseDirection.y = y;
+    }
+
+    protected void StayWithParent()
+    {
+        Transform parent = transform.parent;
+        transform.position = new Vector3(parent.position.x, transform.position.y, transform.position.z);
     }
 
 }
