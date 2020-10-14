@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : CombatEntity, IMoveable
 {
     const float MinAttackCooldown = 0.7f;
     const float MinOffsetFromPlayer = 0.3f;
-
-    [SerializeField]
-    float attackCooldown = 1f;
 
     [SerializeField]
     float moveSpeed = 800f;
@@ -20,12 +17,6 @@ public class Player : MonoBehaviour
     GameObject misslePrefab;
 
 
-    Rigidbody2D rbody;
-    BoxCollider2D playerCollider;
-    CircleCollider2D missleCollider;
-    Animator playerAnimator;
-    Timer timer;
-
     bool mouseClicked = false;
     bool hasAttacked = false;
 
@@ -33,13 +24,10 @@ public class Player : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
-        rbody = GetComponent<Rigidbody2D>();
-        playerCollider = GetComponent<BoxCollider2D>();
+        base.Start();
         missleCollider = misslePrefab.GetComponent<CircleCollider2D>();
-        playerAnimator = GetComponent<Animator>();
-        timer = gameObject.AddComponent<Timer>();
 
         timer.IsFixed = true;
 
@@ -54,12 +42,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AttackListener(); // left mouse button, tap
-        MoveListener(); // arrows (a and d), tilt
+   
+        attackListener(); // left mouse button, tap
+        moveListener(); // arrows (a and d), tilt
         
     }
 
-    void MoveListener()
+    public void moveListener()
     {
         horizontalTilt = Input.GetAxis("Horizontal");
 
@@ -71,7 +60,7 @@ public class Player : MonoBehaviour
         Move();
     }
 
-    void AttackListener()
+    protected override void attackListener()
     {
         mouseClicked = Input.GetAxis("Attack") > 0 && !timer.IsRunning;
 
@@ -86,7 +75,7 @@ public class Player : MonoBehaviour
         {
             if (!hasAttacked)
             {
-                Attack();
+                attack();
             }
         }
         else
@@ -95,12 +84,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Move()
+    public void Move()
     {
         rbody.velocity = new Vector2(horizontalTilt * moveSpeed * Time.deltaTime, 0);
     }
 
-    void Attack()
+    protected override void attack()
     {
         GameObject missle;
         Vector3 position;
