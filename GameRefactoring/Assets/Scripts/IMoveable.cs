@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
     public interface IMoveable
     {
+    /// <summary>
+    /// logic for moving the object
+    /// </summary>
         void Move();
     /// <summary>
     /// listens for input from user, calls Move()

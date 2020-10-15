@@ -1,46 +1,22 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : CombatEntity, IMoveable
+public class Player : RangedCombatEntity, IMoveable, IDamagable, IKillable
 {
-    const float MinOffsetFromPlayer = 0.3f;
-
     [SerializeField]
     float moveSpeed = 800f;
 
-    [SerializeField]
-    protected float attackCooldown = 1f;
-
-    [SerializeField]
-    float missleOffsetFromPlayer = 0f;
-
-    [SerializeField]
-    GameObject projectilePrefab;
-
-    Collider2D projectileCollider;
-
-
     bool mouseClicked = false;
-    bool hasAttacked = false;
 
     float horizontalTilt;
 
-    // Start is called before the first frame update
-    protected override void Start()
-    {
-        base.Start();
-        projectileCollider = projectilePrefab.GetComponent<Collider2D>();
-        timer.IsFixed = true;
-        extractProjectileLoadTime();
-        timer.Duration = attackCooldown;
-    }
-
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-   
-        attackListener(); // left mouse button, tap
+
+        base.Update();
         moveListener(); // arrows (a and d), tilt
         
     }
@@ -87,30 +63,34 @@ public class Player : CombatEntity, IMoveable
         rbody.velocity = new Vector2(horizontalTilt * moveSpeed * Time.deltaTime, 0);
     }
 
-    protected override void attack()
+    public void takeDamage(float damage)
     {
-        GameObject missle;
-        Vector3 position;
-        float yOffset;
 
-        yOffset = entityCollider.bounds.extents.y + projectileCollider.bounds.extents.y + missleOffsetFromPlayer + MinOffsetFromPlayer;
-        position = new Vector3(transform.position.x, transform.position.y + yOffset, transform.position.z);
-
-        missle = Instantiate<GameObject>(projectilePrefab, position, Quaternion.identity);
-        missle.transform.parent = gameObject.transform;
-        hasAttacked = true;
-        timer.Restart();
     }
 
-    void extractProjectileLoadTime()
+    public void killListener()
     {
-        GameObject missle = Instantiate<GameObject>(projectilePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        //if health is <=0 && !isAlive
+        isAlive = false;
+        canAttack = false;
+        playDeathAnimation();
+        //if death animation has finished
+        kill();
+    }
 
-        AnimatedProjectile aProj = missle.GetComponent<AnimatedProjectile>();
+    public void kill()
+    {
+        //if death animation has finished
+        Destroy(gameObject);
+    }
 
-        if (aProj != null)
-            attackCooldown += aProj.AnimationLength;
-
-        Destroy(missle);
+    public void playDeathAnimation()
+    {
+        //TODO:
+        //1. stop and reset timer
+        //2. set timer duration to that of death animation
+        //3. play animation
+        //4. run timer
+        //5. in killListener see when death animation has finished, then kill
     }
 }

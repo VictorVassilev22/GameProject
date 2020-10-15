@@ -20,6 +20,7 @@ public class Projectile : MonoBehaviour
         projectileCollider = GetComponent<Collider2D>();
         projectileCollider.enabled = false;
         impulseDirection = impulseDirection.normalized;
+        Launch(speed, impulseDirection);
     }
 
     protected void Launch(float speed, Vector2 direction)

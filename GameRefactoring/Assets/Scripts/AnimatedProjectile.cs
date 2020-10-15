@@ -26,8 +26,15 @@ public class AnimatedProjectile : Projectile
         animLength = projectileAnimator.runtimeAnimatorController.animationClips[0].length;
     }
 
+    protected override void Start()
+    {
+        projectileCollider = GetComponent<Collider2D>();
+        projectileCollider.enabled = false;
+        impulseDirection = impulseDirection.normalized;
+    }
+
     // Update is called once per frame
-    virtual protected void Update()
+    protected virtual void Update()
     {
         if ((!hasChargingAnimation || CheckForAnimationEnd(chargingAnimationName)) && !hasLaunched)
         {

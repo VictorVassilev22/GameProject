@@ -7,10 +7,15 @@ public abstract class CombatEntity : MonoBehaviour
     [SerializeField]
     protected float attackPoints = 1f;
 
-   protected Rigidbody2D rbody;
-   protected Collider2D entityCollider;
-   protected Animator playerAnimator;
-   protected Timer timer;
+    [SerializeField]
+    protected float attackCooldown = 1f;
+
+    protected Rigidbody2D rbody;
+    protected Collider2D entityCollider;
+    protected Animator playerAnimator;
+    protected Timer timer;
+    protected bool canAttack = true;
+    protected bool isAlive = true;
 
     // Start is called before the first frame update
     protected virtual void Start()
