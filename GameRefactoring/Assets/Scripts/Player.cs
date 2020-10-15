@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class Player : CombatEntity, IMoveable
 {
-    const float MinAttackCooldown = 0.7f;
     const float MinOffsetFromPlayer = 0.3f;
 
     [SerializeField]
     float moveSpeed = 800f;
 
     [SerializeField]
+    protected float attackCooldown = 1f;
+
+    [SerializeField]
     float missleOffsetFromPlayer = 0f;
 
     [SerializeField]
-    GameObject misslePrefab;
+    GameObject projectilePrefab;
+
+    Collider2D projectileCollider;
 
 
     bool mouseClicked = false;
@@ -22,21 +26,14 @@ public class Player : CombatEntity, IMoveable
 
     float horizontalTilt;
 
-
     // Start is called before the first frame update
-    new void Start()
+    protected override void Start()
     {
         base.Start();
-        missleCollider = misslePrefab.GetComponent<CircleCollider2D>();
-
+        projectileCollider = projectilePrefab.GetComponent<Collider2D>();
         timer.IsFixed = true;
-
-        if (attackCooldown < MinAttackCooldown)
-        {
-            attackCooldown = MinAttackCooldown;
-        }
-
-        timer.Duration = attackCooldown;      
+        extractProjectileLoadTime();
+        timer.Duration = attackCooldown;
     }
 
     // Update is called once per frame
@@ -59,6 +56,7 @@ public class Player : CombatEntity, IMoveable
 
         Move();
     }
+
 
     protected override void attackListener()
     {
@@ -95,12 +93,24 @@ public class Player : CombatEntity, IMoveable
         Vector3 position;
         float yOffset;
 
-        yOffset = playerCollider.bounds.extents.y + missleCollider.bounds.extents.y + missleOffsetFromPlayer + MinOffsetFromPlayer;
+        yOffset = entityCollider.bounds.extents.y + projectileCollider.bounds.extents.y + missleOffsetFromPlayer + MinOffsetFromPlayer;
         position = new Vector3(transform.position.x, transform.position.y + yOffset, transform.position.z);
 
-        missle = Instantiate<GameObject>(misslePrefab, position, Quaternion.identity);
+        missle = Instantiate<GameObject>(projectilePrefab, position, Quaternion.identity);
         missle.transform.parent = gameObject.transform;
         hasAttacked = true;
         timer.Restart();
+    }
+
+    void extractProjectileLoadTime()
+    {
+        GameObject missle = Instantiate<GameObject>(projectilePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+
+        AnimatedProjectile aProj = missle.GetComponent<AnimatedProjectile>();
+
+        if (aProj != null)
+            attackCooldown += aProj.AnimationLength;
+
+        Destroy(missle);
     }
 }
