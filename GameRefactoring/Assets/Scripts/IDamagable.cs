@@ -9,5 +9,9 @@ namespace Assets.Scripts
     interface IDamagable
     {
         void takeDamage(float damage);
+        float Health
+        {
+            get;
+        }
     }
 }

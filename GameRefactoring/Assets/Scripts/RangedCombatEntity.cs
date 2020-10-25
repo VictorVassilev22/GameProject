@@ -53,10 +53,15 @@ public abstract class RangedCombatEntity : CombatEntity
     {
         GameObject projectile = Instantiate<GameObject>(projectilePrefab, new Vector3(0, 0, 0), Quaternion.identity);
 
-        AnimatedProjectile aProj = projectile.GetComponent<AnimatedProjectile>();
+        //TODO: Change this to work on any projectile
+        Projectile aProj = projectile.GetComponent<Projectile>();
 
-        if (aProj != null)
-            attackCooldown += aProj.AnimationLength;
+        
+        if(aProj is ChargingProjectile)
+        {
+            if (aProj != null)
+                attackCooldown += (aProj as ChargingProjectile).ChargingLength;
+        }
 
         Destroy(projectile);
     }

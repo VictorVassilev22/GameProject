@@ -6,11 +6,26 @@ using UnityEngine;
 public class Player : RangedCombatEntity, IMoveable, IDamagable, IKillable
 {
     [SerializeField]
+    float health = 100f;
+
+    [SerializeField]
     float moveSpeed = 800f;
 
     bool mouseClicked = false;
 
     float horizontalTilt;
+
+
+    public float Health
+    {
+        get { return health; }
+    }
+
+    public float MoveSpeed
+    {
+        get { return moveSpeed; }
+        set { moveSpeed = value; }
+    }
 
     // Update is called once per frame
     protected override void Update()

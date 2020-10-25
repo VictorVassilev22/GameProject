@@ -15,4 +15,10 @@ using System.Threading.Tasks;
     /// listens for input from user, calls Move()
     /// </summary>
         void moveListener();
+
+        float MoveSpeed
+        {
+            get;
+            set;
+        }
     }

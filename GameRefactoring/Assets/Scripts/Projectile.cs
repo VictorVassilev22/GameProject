@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public abstract class Projectile : MonoBehaviour
 {
 
     [SerializeField]
@@ -17,10 +17,9 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        GetComponent<Rigidbody2D>().gravityScale = 0.0f;
         projectileCollider = GetComponent<Collider2D>();
-        projectileCollider.enabled = false;
         impulseDirection = impulseDirection.normalized;
-        Launch(speed, impulseDirection);
     }
 
     protected void Launch(float speed, Vector2 direction)

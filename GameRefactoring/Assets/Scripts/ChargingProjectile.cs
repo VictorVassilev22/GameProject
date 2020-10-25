@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatedProjectile : Projectile
+public class ChargingProjectile : Projectile
 {
     protected Animator projectileAnimator;
 
@@ -12,29 +12,28 @@ public class AnimatedProjectile : Projectile
     [SerializeField]
     protected bool hasChargingAnimation = true;
 
-    protected bool isAnimFinished = false;
-    protected float animLength;
+    protected bool isChargingFinished = false;
+    protected float chargingLength;
 
-    public float AnimationLength
+    public float ChargingLength
     {
-        get { return animLength; }
+        get { return chargingLength; }
     }
 
     private void Awake()
     {
         projectileAnimator = GetComponent<Animator>();
-        animLength = projectileAnimator.runtimeAnimatorController.animationClips[0].length;
+        chargingLength = projectileAnimator.runtimeAnimatorController.animationClips[0].length;
     }
 
     protected override void Start()
     {
-        projectileCollider = GetComponent<Collider2D>();
+        base.Start();
         projectileCollider.enabled = false;
-        impulseDirection = impulseDirection.normalized;
     }
 
     // Update is called once per frame
-    protected virtual void Update()
+    protected void Update()
     {
         if ((!hasChargingAnimation || CheckForAnimationEnd(chargingAnimationName)) && !hasLaunched)
         {
@@ -53,9 +52,9 @@ public class AnimatedProjectile : Projectile
         AnimatorStateInfo info = projectileAnimator.GetCurrentAnimatorStateInfo(0);
         if (info.IsName(anim_name)) //if charging animation is playing
         {
-            if (info.normalizedTime > 1 && !isAnimFinished) //if time playing animation is up 
+            if (info.normalizedTime > 1 && !isChargingFinished) //if time playing animation is up 
             {
-                isAnimFinished = true; //set animation as finished    
+                isChargingFinished = true; //set animation as finished    
                 return true;
             }
         }
