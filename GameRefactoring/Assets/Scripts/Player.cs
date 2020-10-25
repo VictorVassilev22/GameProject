@@ -1,65 +1,42 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : RangedCombatEntity, IMoveable, IDamagable, IKillable
 {
-    const float MinAttackCooldown = 0.7f;
-    const float MinOffsetFromPlayer = 0.3f;
-
     [SerializeField]
-    float attackCooldown = 1f;
+    float health = 100f;
 
     [SerializeField]
     float moveSpeed = 800f;
 
-    [SerializeField]
-    float missleOffsetFromPlayer = 0f;
-
-    [SerializeField]
-    GameObject misslePrefab;
-
-
-    Rigidbody2D rbody;
-    BoxCollider2D playerCollider;
-    CircleCollider2D missleCollider;
-    Animator playerAnimator;
-    Timer timer;
-
     bool mouseClicked = false;
-    bool hasAttacked = false;
 
     float horizontalTilt;
 
 
-    // Start is called before the first frame update
-    void Start()
+    public float Health
     {
-        rbody = GetComponent<Rigidbody2D>();
-        playerCollider = GetComponent<BoxCollider2D>();
-        missleCollider = misslePrefab.GetComponent<CircleCollider2D>();
-        playerAnimator = GetComponent<Animator>();
-        timer = gameObject.AddComponent<Timer>();
+        get { return health; }
+    }
 
-        timer.IsFixed = true;
-
-        if (attackCooldown < MinAttackCooldown)
-        {
-            attackCooldown = MinAttackCooldown;
-        }
-
-        timer.Duration = attackCooldown;      
+    public float MoveSpeed
+    {
+        get { return moveSpeed; }
+        set { moveSpeed = value; }
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        AttackListener(); // left mouse button, tap
-        MoveListener(); // arrows (a and d), tilt
+
+        base.Update();
+        moveListener(); // arrows (a and d), tilt
         
     }
 
-    void MoveListener()
+    public void moveListener()
     {
         horizontalTilt = Input.GetAxis("Horizontal");
 
@@ -71,7 +48,8 @@ public class Player : MonoBehaviour
         Move();
     }
 
-    void AttackListener()
+
+    protected override void attackListener()
     {
         mouseClicked = Input.GetAxis("Attack") > 0 && !timer.IsRunning;
 
@@ -86,7 +64,7 @@ public class Player : MonoBehaviour
         {
             if (!hasAttacked)
             {
-                Attack();
+                attack();
             }
         }
         else
@@ -95,23 +73,39 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Move()
+    public void Move()
     {
         rbody.velocity = new Vector2(horizontalTilt * moveSpeed * Time.deltaTime, 0);
     }
 
-    void Attack()
+    public void takeDamage(float damage)
     {
-        GameObject missle;
-        Vector3 position;
-        float yOffset;
 
-        yOffset = playerCollider.bounds.extents.y + missleCollider.bounds.extents.y + missleOffsetFromPlayer + MinOffsetFromPlayer;
-        position = new Vector3(transform.position.x, transform.position.y + yOffset, transform.position.z);
+    }
 
-        missle = Instantiate<GameObject>(misslePrefab, position, Quaternion.identity);
-        missle.transform.parent = gameObject.transform;
-        hasAttacked = true;
-        timer.Restart();
+    public void killListener()
+    {
+        //if health is <=0 && !isAlive
+        isAlive = false;
+        canAttack = false;
+        playDeathAnimation();
+        //if death animation has finished
+        kill();
+    }
+
+    public void kill()
+    {
+        //if death animation has finished
+        Destroy(gameObject);
+    }
+
+    public void playDeathAnimation()
+    {
+        //TODO:
+        //1. stop and reset timer
+        //2. set timer duration to that of death animation
+        //3. play animation
+        //4. run timer
+        //5. in killListener see when death animation has finished, then kill
     }
 }
