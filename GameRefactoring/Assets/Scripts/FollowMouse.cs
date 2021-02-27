@@ -6,6 +6,7 @@ public class FollowMouse : MonoBehaviour
 {
     [SerializeField]
     const float Speed = 4f;
+    bool isRunning = false;
 
     float angle = 0f;
     bool isMainCamera = false;
@@ -13,11 +14,20 @@ public class FollowMouse : MonoBehaviour
     const float dx = 0.5f;
     const float dy = 0.5f;
 
+    Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("isRunning", isRunning);
         if (Input.GetMouseButton(0))
         {
+            isRunning = true;
             Vector3 mousePosition = Input.mousePosition;
 
 #if UNITY_ANDROID
@@ -45,6 +55,10 @@ public class FollowMouse : MonoBehaviour
                     transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
                 }
             }
+        }
+        else
+        {
+            isRunning = false;
         }
     }
 }
