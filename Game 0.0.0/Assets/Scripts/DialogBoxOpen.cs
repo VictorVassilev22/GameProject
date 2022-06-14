@@ -19,6 +19,7 @@ public class DialogBoxOpen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         tailor = this.transform.parent.gameObject;
         player = GameObject.Find("Player");
         dialogBox = GameObject.Find("TailorDialogBox");
@@ -29,6 +30,7 @@ public class DialogBoxOpen : MonoBehaviour
         phrases[2] = "Rune enchanted robes only here!";
         phrases[3] = "Never go on a quest without a robe!";
         phrases[4] = "I will show you the best robes I've got!";
+
     }
 
     // Update is called once per frame
